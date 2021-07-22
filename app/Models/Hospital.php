@@ -9,11 +9,12 @@ class Hospital extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'distritic_id',
         'name',
-        'ditrict',
-        'provincie',
-        'departament',
     ];
+    public function distritic(){
+        return $this->belongsTo(Distritic::class);
+    }
     public function covidteams()
     {
         return $this->hasMany(CovidTeam::class);

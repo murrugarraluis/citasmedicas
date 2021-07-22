@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHospitalsTable extends Migration
+class CreateDistriticsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateHospitalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hospitals', function (Blueprint $table) {
-            $table->id();
+        Schema::create('distritics', function (Blueprint $table) {
+            $table->char('id',6);
+            $table->char('provincie_id',4);
+            // $table->foreignId('provincie_id')->constrained('provincies');
             $table->string('name');
-            $table->char('distritic_id',6);
-            // $table->foreignId('distritic_id')->constrained('distritics');
             $table->timestamps();
-            $table->foreign('distritic_id')->references('id')->on('distritics');
+
+            $table->primary('id');
+            $table->foreign('provincie_id')->references('id')->on('provincies');
         });
     }
 
@@ -30,6 +32,6 @@ class CreateHospitalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hospitals');
+        Schema::dropIfExists('distritics');
     }
 }
