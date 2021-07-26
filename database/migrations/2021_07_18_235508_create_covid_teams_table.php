@@ -18,6 +18,7 @@ class CreateCovidTeamsTable extends Migration
             $table->string('name');
             $table->foreignId('hospital_id')->constrained('hospitals');
             $table->timestamps();
+						$table->softDeletes();
         });
     }
 

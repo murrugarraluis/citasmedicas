@@ -17,22 +17,6 @@
 		<x-slot name='content'>
 			<div>
 				<div class="grid grid-cols-3 gap-4 my-2">
-					{{-- <div>
-						<x-jet-label value="Departamento" class="mb-2"></x-jet-label>
-						<select wire:model="departament"
-							class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm'">
-							<option hidden>Seleccione</option>
-							@foreach ($departaments as $departament )
-							@if ($departament_id == $departament->id)
-							<option value="{{$departament->code}}" selected>
-								{{ $departament->name }}</option>
-							@endif
-							<option value="{{$departament->code}}">
-								{{ $departament->name }}</option>
-							@endforeach
-						</select>
-						@error('departament')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
-					</div> --}}
 					<div>
 						<x-jet-label value="Departamento" class="mb-2"></x-jet-label>
 						<select wire:model="departament"
@@ -53,13 +37,13 @@
 							@if (!is_null($provincies))
 							@foreach ($provincies as $provincie )
 							<option value="{{$provincie->code}}">
-					{{ $provincie->name }}</option>
-					@endforeach
-					@endif
-					</select>
-					@error('provincie')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
-				</div>
-				<div>
+								{{ $provincie->name }}</option>
+							@endforeach
+							@endif
+						</select>
+						@error('provincie')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+					</div>
+					<div>
 						<x-jet-label value="Distrito" class="mb-2"></x-jet-label>
 						<select wire:model="distritic"
 							class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm'">
@@ -67,61 +51,61 @@
 							@if (!is_null($distritics))
 							@foreach ($distritics as $distritic )
 							<option value="{{$distritic->code}}">
-				{{ $distritic->name }} </option>
-				@endforeach
-				@endif
-				</select>
-				@error('distritic')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+								{{ $distritic->name }} </option>
+							@endforeach
+							@endif
+						</select>
+						@error('distritic')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+					</div>
+				</div>
+				<div class="my-2">
+					<x-jet-label value="Nombre Hospital" class="mb-2"></x-jet-label>
+					<x-jet-input type="text" class="w-full" wire:model.defer="name"></x-jet-input>
+					@error('name')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+				</div>
 			</div>
-</div>
-<div class="my-2">
-	<x-jet-label value="Nombre Hospital" class="mb-2"></x-jet-label>
-	<x-jet-input type="text" class="w-full" wire:model.defer="name"></x-jet-input>
-	@error('name')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
-</div>
-</div>
-<div>
-	<div class="grid grid-cols-2 gap-4 my-2">
-		<div>
-			<x-jet-label value="DNI" class="mb-2"></x-jet-label>
-			<x-jet-input type="text" class="w-full" wire:model.defer="DNI" maxlength="8"
-				onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
-			</x-jet-input>
-			@error('DNI')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
-		</div>
-		<div>
-			<x-jet-label value="Nombres" class="mb-2"></x-jet-label>
-			<x-jet-input type="text" class="w-full" wire:model.defer="firstname"></x-jet-input>
-			@error('firstname')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
-		</div>
-	</div>
-	<div>
-		<x-jet-label value="Apellidos" class="mb-2"></x-jet-label>
-		<x-jet-input type="text" class="w-full" wire:model.defer="lastname"></x-jet-input>
-		@error('lastname')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
-	</div>
-	<div class="grid grid-cols-2 gap-4 my-2">
-		<div>
-			<x-jet-label value="Sexo" class="mb-2"></x-jet-label>
-			<select wire:model.defer="gender"
-				class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm'">
-				<option hidden>Seleccione</option>
-				<option>Masculino</option>
-				<option>Femenino</option>
-			</select>
-			@error('gender')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
-		</div>
-		<div>
-			<x-jet-label value="Email" class="mb-2"></x-jet-label>
-			<x-jet-input type="text" class="w-full" wire:model.defer="email"></x-jet-input>
-			@error('email')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
-		</div>
-	</div>
-</div>
-</x-slot>
-<x-slot name='footer'>
-	<x-jet-button wire:click="update()" wire:loading.attr='disabled' wire:target="update">Guardar</x-jet-button>
-	<x-jet-secondary-button wire:click="close()">Cancelar</x-jet-secondary-button>
-</x-slot>
-</x-jet-dialog-modal>
+			<div>
+				<div class="grid grid-cols-2 gap-4 my-2">
+					<div>
+						<x-jet-label value="DNI" class="mb-2"></x-jet-label>
+						<x-jet-input type="text" class="w-full" wire:model.defer="DNI" maxlength="8"
+							onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+						</x-jet-input>
+						@error('DNI')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+					</div>
+					<div>
+						<x-jet-label value="Nombres" class="mb-2"></x-jet-label>
+						<x-jet-input type="text" class="w-full" wire:model.defer="firstname"></x-jet-input>
+						@error('firstname')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+					</div>
+				</div>
+				<div>
+					<x-jet-label value="Apellidos" class="mb-2"></x-jet-label>
+					<x-jet-input type="text" class="w-full" wire:model.defer="lastname"></x-jet-input>
+					@error('lastname')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+				</div>
+				<div class="grid grid-cols-2 gap-4 my-2">
+					<div>
+						<x-jet-label value="Sexo" class="mb-2"></x-jet-label>
+						<select wire:model.defer="gender"
+							class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm'">
+							<option hidden>Seleccione</option>
+							<option>Masculino</option>
+							<option>Femenino</option>
+						</select>
+						@error('gender')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+					</div>
+					<div>
+						<x-jet-label value="Email" class="mb-2"></x-jet-label>
+						<x-jet-input type="text" class="w-full" wire:model.defer="email"></x-jet-input>
+						@error('email')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+					</div>
+				</div>
+			</div>
+		</x-slot>
+		<x-slot name='footer'>
+			<x-jet-button wire:click="update()" wire:loading.attr='disabled' wire:target="update">Guardar</x-jet-button>
+			<x-jet-secondary-button wire:click="$set('open',false)">Cancelar</x-jet-secondary-button>
+		</x-slot>
+	</x-jet-dialog-modal>
 </div>

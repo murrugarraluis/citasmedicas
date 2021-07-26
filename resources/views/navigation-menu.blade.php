@@ -19,6 +19,9 @@
 										<x-jet-nav-link href="{{ route('hospital') }} ">
 												Hospitales
 										</x-jet-nav-link>
+										<x-jet-nav-link href="{{ route('covidteam') }} ">
+											Equipos Covid
+									</x-jet-nav-link>
                 </div>
             </div>
 

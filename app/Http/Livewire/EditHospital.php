@@ -78,9 +78,6 @@ class EditHospital extends Component
 	{
 		$this->open = true;
 	}
-	public function close(){
-		$this->open = false;
-	}
 	public function default()
 	{
 		$this->reset(['open']);

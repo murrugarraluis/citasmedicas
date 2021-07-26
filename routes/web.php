@@ -24,3 +24,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/hospitales', function () {
     return view('mantainers.hospital');
 })->name('hospital');
+Route::get('/equipos', function () {
+	return view('mantainers.covidteam');
+})->name('covidteam');
+
+
