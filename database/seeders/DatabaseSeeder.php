@@ -2194,10 +2194,8 @@ class DatabaseSeeder extends Seeder
         $paciente->roles()->attach(4);
 
         // CREACION DE HOSPITAL
-        $hospital = Hospital::factory()->create([
-            'name' => 'Tomas Lafora',
-            'distritic_id' => '130702',
-        ]);
+				$hospital = $doctorHospital->hospital()->create(['name' => 'Tomas Lafora']);
+				$hospital->distritic()->associate(130702)->save();
 
         // CREACION DE TEAMS EN HOSPITAL 1
         $hospital->covidteams()->create(['name' => 'Equipo 01 Lafora Guadalupe']);

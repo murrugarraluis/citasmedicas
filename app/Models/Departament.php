@@ -15,4 +15,13 @@ class Departament extends Model
     public function provincies(){
         return $this->hasMany(Provincie::class);
     }
+		public function getCodeAttribute()
+		{
+			if (strlen($this->id < 10)) {
+				return "0".$this->id;
+			}
+			else{
+				return $this->id;
+			}
+		}
 }

@@ -16,11 +16,13 @@ class CreateHospitalsTable extends Migration
         Schema::create('hospitals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->char('distritic_id',6);
+            $table->char('distritic_id',6)->nullable();
             // $table->foreignId('distritic_id')->constrained('distritics');
-            $table->timestamps();
+            $table->foreignId('user_id')->unique()->constrained('users');
+						$table->timestamps();
             $table->foreign('distritic_id')->references('id')->on('distritics');
-        });
+						$table->softDeletes();
+					});
     }
 
     /**

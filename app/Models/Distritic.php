@@ -19,4 +19,13 @@ class Distritic extends Model
     public function hospitals(){
         return $this->hasMany(Hospital::class);
     }
+		public function getCodeAttribute()
+		{
+			if (strlen($this->id < 100000)) {
+				return "0".$this->id;
+			}
+			else{
+				return $this->id;
+			}
+		}
 }

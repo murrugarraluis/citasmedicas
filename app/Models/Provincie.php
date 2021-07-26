@@ -19,4 +19,13 @@ class Provincie extends Model
     public function distritics(){
         return $this->hasMany(Distritic::class);
     }
+		public function getCodeAttribute()
+		{
+			if (strlen($this->id < 1000)) {
+				return "0".$this->id;
+			}
+			else{
+				return $this->id;
+			}
+		}
 }
