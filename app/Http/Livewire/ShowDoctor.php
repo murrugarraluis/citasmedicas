@@ -18,7 +18,7 @@ class ShowDoctor extends Component
 	use WithPagination;
 	public $status = 'Activos';
 	public $show = 5;
-	public $sort = 'id';
+	public $sort = 'doctors.id';
 	public $direction = 'desc';
 	public $search;
 	public $user, $DNI, $name, $lastname, $speciality;
@@ -33,28 +33,23 @@ class ShowDoctor extends Component
 	{
 		try {
 			if ($this->status == 'Activos') {
-				// $doctors = Doctor::join('assignables', 'assignables.doctor_id', '=', 'doctors.id')
-				// 	->where('assignables.assignable_type', '=', 'App\Models\Hospital')
-				// 	->where('assignables.assignable_id', '=', auth()->user()->hospital->id)
-				// 	->where(function ($query) {
-				// 		$query->where('doctors.id', 'like', '%' . $this->search . '%')
-				// 			->orWhere('doctors.speciality', 'like', '%' . $this->search . '%');
-				// 	})
-				// 	->orderBy($this->sort, $this->direction)->paginate($this->show);
-
-				$doctors = Doctor::join('assignables', function ($join) {
-					$join->on('assignables.doctor_id', '=', 'doctors.id')
-						->where('assignables.assignable_type', '=', 'App\Models\Hospital')
-						->where('assignables.assignable_id', '=', auth()->user()->hospital->id);
-				})->orderBy($this->sort, $this->direction)->paginate($this->show);
-			} else {
-				$doctors = Doctor::join('assignables', 'assignables.doctor_id', '=', 'doctors.id')->onlyTrashed()
+				$doctors = Doctor::join('assignables', 'assignables.doctor_id', '=', 'doctors.id')
+					->join('users', 'users.id', '=', 'doctors.user_id')
 					->where('assignables.assignable_type', '=', 'App\Models\Hospital')
 					->where('assignables.assignable_id', '=', auth()->user()->hospital->id)
+					->select('doctors.*')
 					->where(function ($query) {
-						// $query->where('doctor.name', 'like', '%' . $this->search . '%');
+						$query->where('users.DNI', 'like', '%' . $this->search . '%')
+							->orwhere('users.name', 'like', '%' . $this->search . '%')
+							->orwhere('users.lastname', 'like', '%' . $this->search . '%')
+							->orwhere('doctors.speciality', 'like', '%' . $this->search . '%')
+							->orwhere('users.gender', 'like', '%' . $this->search . '%')
+							->orwhere('users.email', 'like', '%' . $this->search . '%')
+							->orwhere('doctors.phone', 'like', '%' . $this->search . '%');
 					})
 					->orderBy($this->sort, $this->direction)->paginate($this->show);
+			} else {
+				// Vacio porque no hay opcion VER INACTIVOS
 			}
 			$this->resetPage();
 			return view('livewire.show-doctor', compact('doctors'));
@@ -158,5 +153,9 @@ class ShowDoctor extends Component
 		} catch (Exception $e) {
 			$this->emit('error', $e->getMessage());
 		}
+	}
+	public function clear()
+	{
+		$this->reset(['user', 'DNI', 'name', 'lastname', 'speciality']);
 	}
 }

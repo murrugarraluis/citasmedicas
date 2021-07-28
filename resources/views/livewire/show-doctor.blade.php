@@ -27,28 +27,26 @@
 					<div class="col-span-3">
 						<div class="flex flex-col justify-between items-center md:flex-row ">
 							<div class="my-2 w-72 md:px-2">
-								<x-jet-input type="text" class="w-full bg-gray-200" wire:model.defer="name" placeholder="Nombre"
+								<x-jet-input type="text" class="w-full bg-gray-200 text-gray-600" wire:model.defer="name" placeholder="Nombre"
 									disabled></x-jet-input>
 								@error('name')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 							</div>
 							<div class="my-2 w-72 md:px-2">
-								<x-jet-input type="text" class="w-full bg-gray-200" wire:model.defer="lastname" placeholder="Apellido"
+								<x-jet-input type="text" class="w-full bg-gray-200 text-gray-600" wire:model.defer="lastname" placeholder="Apellido"
 									disabled></x-jet-input>
 								@error('lastname')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 							</div>
 							<div class="my-2 w-72 md:px-2">
-								<x-jet-input type="text" class="w-full bg-gray-200" wire:model.defer="speciality"
+								<x-jet-input type="text" class="w-full bg-gray-200 text-gray-600" wire:model.defer="speciality"
 									placeholder="Especialidad" disabled></x-jet-input>
 								@error('speciality')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 							</div>
 							<div>
-								<button type="button" wire:click="assign()"
-									class=" flex border border-blue-400 bg-blue-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-blue-600 focus:outline-none focus:shadow-outline">
+								<button type="button" wire:click="clear()"
+									class=" flex border border-gray-400 bg-gray-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline">
 									<p class="pr-2">Limpiar</p>
-									<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-										stroke="currentColor">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-											d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
 									</svg>
 								</button>
 							</div>

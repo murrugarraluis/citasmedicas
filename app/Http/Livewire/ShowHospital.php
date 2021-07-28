@@ -34,13 +34,22 @@ class ShowHospital extends Component
 					->orwhere('provincies.name', 'like', '%' . $this->search . '%')
 					->orwhere('departaments.name', 'like', '%' . $this->search . '%');
 				})
-				->orderBy($this->sort, $this->direction)->paginate($this->show);;
+				->orderBy($this->sort, $this->direction)->paginate($this->show);
 			} else {
-				$hospitals = Hospital::onlyTrashed()
-					->where(function ($query) {
-						$query->where('name', 'like', '%' . $this->search . '%');
-					})
-					->orderBy($this->sort, $this->direction)->paginate($this->show);
+				$hospitals = Hospital::onlyTrashed()->join('distritics', 'distritics.id', '=', 'hospitals.distritic_id')
+				->join('provincies', 'provincies.id', '=', 'distritics.provincie_id')
+				->join('departaments', 'departaments.id', '=', 'provincies.departament_id')
+				->join('users', 'users.id', '=', 'hospitals.user_id')
+				->select('hospitals.*')
+				->where(function ($query) {
+					$query->where('hospitals.name', 'like', '%' . $this->search . '%')
+					->orwhere('distritics.name', 'like', '%' . $this->search . '%')
+					->orwhere('users.name', 'like', '%' . $this->search . '%')
+					->orwhere('users.lastname', 'like', '%' . $this->search . '%')
+					->orwhere('provincies.name', 'like', '%' . $this->search . '%')
+					->orwhere('departaments.name', 'like', '%' . $this->search . '%');
+				})
+				->orderBy($this->sort, $this->direction)->paginate($this->show);
 			}
 			$this->resetPage();
 			return view('livewire.show-hospital', compact('hospitals'));
