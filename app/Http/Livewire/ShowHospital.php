@@ -12,7 +12,7 @@ class ShowHospital extends Component
 	use WithPagination;
 	public $status = 'Activos';
 	public $show = 5;
-	public $sort = 'id';
+	public $sort = 'hospitals.id';
 	public $direction = 'desc';
 	public $search;
 	protected $listeners = ['restore', 'destroy', 'render'];
@@ -21,8 +21,20 @@ class ShowHospital extends Component
 	{
 		try {
 			if ($this->status == 'Activos') {
-				$hospitals = Hospital::Where('name', 'like', '%' . $this->search . '%')
-					->orderBy($this->sort, $this->direction)->paginate($this->show);
+				$hospitals = Hospital::join('distritics', 'distritics.id', '=', 'hospitals.distritic_id')
+				->join('provincies', 'provincies.id', '=', 'distritics.provincie_id')
+				->join('departaments', 'departaments.id', '=', 'provincies.departament_id')
+				->join('users', 'users.id', '=', 'hospitals.user_id')
+				->select('hospitals.*')
+				->where(function ($query) {
+					$query->where('hospitals.name', 'like', '%' . $this->search . '%')
+					->orwhere('distritics.name', 'like', '%' . $this->search . '%')
+					->orwhere('users.name', 'like', '%' . $this->search . '%')
+					->orwhere('users.lastname', 'like', '%' . $this->search . '%')
+					->orwhere('provincies.name', 'like', '%' . $this->search . '%')
+					->orwhere('departaments.name', 'like', '%' . $this->search . '%');
+				})
+				->orderBy($this->sort, $this->direction)->paginate($this->show);;
 			} else {
 				$hospitals = Hospital::onlyTrashed()
 					->where(function ($query) {
@@ -45,7 +57,7 @@ class ShowHospital extends Component
 	{
 		try {
 			$user_hospital = Hospital::find($id)->user;
-			$user_hospital->roles()->detach([2,4]);
+			$user_hospital->roles()->detach([2, 4]);
 			Hospital::destroy($id);
 			$this->emit('alert', 'Hospital Eliminado');
 		} catch (Exception $e) {
@@ -62,7 +74,7 @@ class ShowHospital extends Component
 			$objeto = Hospital::withTrashed()->where('id', $id);
 			$objeto->restore();
 			$user_hospital = Hospital::find($id)->user;
-			$user_hospital->roles()->attach([2,4]);
+			$user_hospital->roles()->attach([2, 4]);
 			$this->emit('alert', 'Hospital Restaurado');
 		} catch (Exception $e) {
 			$this->emit('error', $e->getMessage());

@@ -55,18 +55,7 @@
 								<tr>
 									<th
 										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">
-										<div class="flex justify-between cursor-pointer" wire:click="order('id')">
-											id
-											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-												stroke="currentColor">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-													d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
-											</svg>
-										</div>
-									</th>
-									<th
-										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">
-										<div class="flex justify-between cursor-pointer" wire:click="order('name')">
+										<div class="flex justify-between cursor-pointer" wire:click="order('hospitals.name')">
 											Nombre de Hospital
 											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
 												stroke="currentColor">
@@ -77,7 +66,7 @@
 									</th>
 									<th
 										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">
-										<div class="flex justify-between cursor-pointer" wire:click="order('name')">
+										<div class="flex justify-between cursor-pointer" wire:click="order('users.name')">
 											Nombre del Representante
 											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
 												stroke="currentColor">
@@ -88,7 +77,7 @@
 									</th>
 									<th
 										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">
-										<div class="flex justify-between cursor-pointer" wire:click="order('name')">
+										<div class="flex justify-between cursor-pointer" wire:click="order('departaments.name')">
 											Departamento
 											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
 												stroke="currentColor">
@@ -99,7 +88,7 @@
 									</th>
 									<th
 										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">
-										<div class="flex justify-between cursor-pointer" wire:click="order('name')">
+										<div class="flex justify-between cursor-pointer" wire:click="order('provincies.name')">
 											Provincia
 											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
 												stroke="currentColor">
@@ -110,7 +99,7 @@
 									</th>
 									<th
 										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">
-										<div class="flex justify-between cursor-pointer" wire:click="order('name')">
+										<div class="flex justify-between cursor-pointer" wire:click="order('distritics.name')">
 											Distrito
 											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
 												stroke="currentColor">
@@ -132,10 +121,6 @@
 								@if ($hospitals->count())
 								@foreach ($hospitals as $hospital)
 								<tr>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-10">
-										<p class="text-gray-600 font-semibold whitespace-no-wrap">
-											{{ $hospital->id }}</p>
-									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<p class="text-gray-600 whitespace-no-wrap">{{ $hospital->name }}</p>
 									</td>
@@ -143,7 +128,8 @@
 										<p class="text-gray-600 whitespace-no-wrap">{{ $hospital->boss}}</p>
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-600 whitespace-no-wrap">{{ $hospital->distritic->provincie->departament->name}}</p>
+										<p class="text-gray-600 whitespace-no-wrap">{{ $hospital->distritic->provincie->departament->name}}
+										</p>
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<p class="text-gray-600 whitespace-no-wrap">{{ $hospital->distritic->provincie->name}}</p>
