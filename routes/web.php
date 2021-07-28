@@ -21,11 +21,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+// ROL ADMIN
 Route::get('/hospitales', function () {
     return view('mantainers.hospital');
 })->name('hospital');
+
+// ROL HOSPITAL
 Route::get('/equipos', function () {
 	return view('mantainers.covidteam');
 })->name('covidteam');
+Route::get('/doctores', function () {
+	return view('mantainers.doctor');
+})->name('doctor');
 
 

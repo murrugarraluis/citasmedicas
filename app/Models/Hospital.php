@@ -28,7 +28,7 @@ class Hospital extends Model
 	}
 	public function doctors()
 	{
-		return $this->morphToMany(Doctor::class, 'assignable');
+		return $this->morphToMany(Doctor::class, 'assignable')->withTimestamps();
 	}
 
 	public function getBossAttribute()

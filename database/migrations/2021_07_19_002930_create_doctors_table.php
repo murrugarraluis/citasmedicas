@@ -19,6 +19,7 @@ class CreateDoctorsTable extends Migration
             $table->string('speciality');
             $table->string('phone');
             $table->timestamps();
+						$table->softDeletes();
         });
     }
 

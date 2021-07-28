@@ -1127,6 +1127,9 @@ select {
 .col-span-6 {
 	grid-column: span 6 / span 6;
 }
+.col-span-3 {
+	grid-column: span 3 / span 3;
+}
 .m-2 {
 	margin: 0.5rem;
 }
@@ -1319,6 +1322,18 @@ select {
 .w-10\/12 {
 	width: 83.333333%;
 }
+.w-11\/12 {
+	width: 91.666667%;
+}
+.w-7\/12 {
+	width: 58.333333%;
+}
+.w-80 {
+	width: 20rem;
+}
+.w-72 {
+	width: 18rem;
+}
 .min-w-0 {
 	min-width: 0px;
 }
@@ -1402,11 +1417,11 @@ select {
 .grid-cols-1 {
 	grid-template-columns: repeat(1, minmax(0, 1fr));
 }
-.grid-cols-3 {
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-}
 .grid-cols-2 {
 	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-3 {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .flex-row {
 	flex-direction: row;
@@ -1428,6 +1443,9 @@ select {
 }
 .justify-between {
 	justify-content: space-between;
+}
+.justify-evenly {
+	justify-content: space-evenly;
 }
 .gap-6 {
 	gap: 1.5rem;
@@ -1566,6 +1584,10 @@ select {
 	--tw-border-opacity: 1;
 	border-color: rgba(251, 191, 36, var(--tw-border-opacity));
 }
+.border-blue-400 {
+	--tw-border-opacity: 1;
+	border-color: rgba(96, 165, 250, var(--tw-border-opacity));
+}
 .bg-white {
 	--tw-bg-opacity: 1;
 	background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
@@ -1640,6 +1662,14 @@ select {
 .bg-yellow-400 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(251, 191, 36, var(--tw-bg-opacity));
+}
+.bg-blue-400 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(96, 165, 250, var(--tw-bg-opacity));
+}
+.bg-gray-700 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
 	--tw-bg-opacity: 0.25;
@@ -2064,6 +2094,10 @@ select {
 .hover\:bg-yellow-600:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(217, 119, 6, var(--tw-bg-opacity));
+}
+.hover\:bg-blue-600:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
 }
 .hover\:text-gray-500:hover {
 	--tw-text-opacity: 1;
@@ -2520,6 +2554,11 @@ select {
 		border-left-width: 1px;
 	}
 
+	.md\:px-2 {
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+
 	.md\:text-left {
 		text-align: left;
 	}
@@ -2532,6 +2571,18 @@ select {
 
 	.lg\:w-9\/12 {
 		width: 75%;
+	}
+
+	.lg\:w-11\/12 {
+		width: 91.666667%;
+	}
+
+	.lg\:grid-cols-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.lg\:gap-4 {
+		gap: 1rem;
 	}
 
 	.lg\:px-8 {
