@@ -46,7 +46,7 @@ class CreateDoctor extends Component
 						'name' => trim(ucfirst($this->name)),
 						'lastname' => trim(ucfirst($this->lastname)),
 						'gender' => trim(ucfirst($this->gender)),
-						'email' => trim(ucfirst($this->email)),
+						'email' => trim($this->email),
 						'password' => bcrypt(trim($this->DNI)),
 					]);
 					$user->doctor()->create(['speciality' => trim(ucfirst($this->specialty)), 'phone' => trim($this->phone)]);

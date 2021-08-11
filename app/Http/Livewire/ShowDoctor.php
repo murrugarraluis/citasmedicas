@@ -16,6 +16,7 @@ use function PHPUnit\Framework\isNull;
 class ShowDoctor extends Component
 {
 	use WithPagination;
+
 	public $status = 'Activos';
 	public $show = 5;
 	public $sort = 'doctors.id';
@@ -29,6 +30,7 @@ class ShowDoctor extends Component
 		'lastname' => 'required',
 		'speciality' => 'required',
 	];
+
 	public function render()
 	{
 		try {
@@ -57,10 +59,12 @@ class ShowDoctor extends Component
 			$this->emit('error', $e->getMessage());
 		}
 	}
+
 	public function delete($id)
 	{
 		$this->emit('delete', 'Está Apunto de Eliminar el Doctor', $id);
 	}
+
 	public function destroy($id)
 	{
 		try {
@@ -72,10 +76,12 @@ class ShowDoctor extends Component
 			$this->emit('error', $e->getMessage());
 		}
 	}
+
 	public function renovate($id)
 	{
 		$this->emit('renovate', 'Este Doctor a sido Eliminada Anteriormente', $id);
 	}
+
 	public function restore($id)
 	{
 		try {
@@ -86,6 +92,7 @@ class ShowDoctor extends Component
 			$this->emit('error', $e->getMessage());
 		}
 	}
+
 	public function order($sort)
 	{
 		if ($this->direction == 'desc') {
@@ -95,6 +102,7 @@ class ShowDoctor extends Component
 		}
 		$this->sort = $sort;
 	}
+
 	public function assign()
 	{
 		try {
@@ -117,6 +125,7 @@ class ShowDoctor extends Component
 			$this->emit('error', $e->getMessage());
 		}
 	}
+
 	public function searchMatches($user, $hospital)
 	{
 		$hospitales = $user->doctor->hospitals;
@@ -128,9 +137,11 @@ class ShowDoctor extends Component
 		}
 		return false;
 	}
+
 	public function search()
 	{
 		try {
+			$this->reset(['user','name', 'lastname', 'speciality']);
 			if ($this->DNI) {
 				$user = User::where('DNI', '=', $this->DNI);
 				if ($user->count()) {
@@ -154,6 +165,7 @@ class ShowDoctor extends Component
 			$this->emit('error', $e->getMessage());
 		}
 	}
+
 	public function clear()
 	{
 		$this->reset(['user', 'DNI', 'name', 'lastname', 'speciality']);
