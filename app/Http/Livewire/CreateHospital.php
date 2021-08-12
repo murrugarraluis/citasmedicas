@@ -36,12 +36,12 @@ class CreateHospital extends Component
 	{
 		$this->validate();
 		try {
-			if (Hospital::where('name', $this->name)->count()) {
+			if (Hospital::where('name', $this->name, 'distritic_id',$this->distritic)->count()) {
 				$this->emit('info', 'Hospital Ya Registrado');
 			} else {
-				if (Hospital::withTrashed()->where('name', $this->name)->count()) {
+				if (Hospital::withTrashed()->where('name', $this->name,'distritic_id',$this->distritic)->count()) {
 					// Llamar a methodo de confirmarcion de componente show-categories
-					$objetos = Hospital::withTrashed()->where('name', $this->name)->get();
+					$objetos = Hospital::withTrashed()->where('name', $this->name,'distritic_id',$this->distritic)->get();
 					// recorrer la colletion y extraer el IDs
 					foreach ($objetos as $objeto) {
 						$id = $objeto->id;
@@ -49,21 +49,26 @@ class CreateHospital extends Component
 					$this->emit('renovate', 'Este Hospital a sido Eliminada Anteriormente', $id);
 					$this->default();
 				} else {
-					$user = User::create([
-						'DNI' => trim($this->DNI),
-            'name' => trim(ucfirst($this->firstname)),
-            'lastname' => trim(ucfirst($this->lastname)),
-            'gender' => trim(ucfirst($this->gender)),
-            'email' => trim(ucfirst($this->email)),
-            'password' => bcrypt(trim($this->DNI)),
-					]);
-					$user->roles()->attach([2,4]);
-					$hospital = $user->hospital()->create(['name' => trim(ucfirst($this->name))]);
-					$hospital->distritic()->associate($this->distritic)->save();
+					if (User::where('id',$this->DNI)->count()){
+						$this->emit('info', 'Esta Persona ya tiene un hospital a cargo');
+					}
+					else{
+						$user = User::create([
+							'DNI' => trim($this->DNI),
+							'name' => trim(ucfirst($this->firstname)),
+							'lastname' => trim(ucfirst($this->lastname)),
+							'gender' => trim(ucfirst($this->gender)),
+							'email' => trim($this->email),
+							'password' => bcrypt(trim($this->DNI)),
+						]);
+						$user->roles()->attach([2,4]);
+						$hospital = $user->hospital()->create(['name' => trim(ucfirst($this->name))]);
+						$hospital->distritic()->associate($this->distritic)->save();
 
-					$this->default();
-					$this->emitTo('show-hospital', 'render');
-					$this->emit('alert', 'Hospital Agregado');
+						$this->default();
+						$this->emitTo('show-hospital', 'render');
+						$this->emit('alert', 'Hospital Agregado');
+					}
 				}
 			}
 		} catch (Exception $e) {

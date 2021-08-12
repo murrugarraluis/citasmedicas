@@ -8,7 +8,7 @@
 			</svg>
 		</a>
 	</div>
-	<x-jet-dialog-modal wire:model="open" maxWidth="5xl">
+	<x-jet-dialog-modal wire:model="open" maxWidth="2xl">
 		<x-slot name='title'>
 			<p class="font-bold">
 				Editar Doctor
@@ -19,8 +19,8 @@
 				<div class="grid grid-cols-2 gap-4 my-2">
 					<div>
 						<x-jet-label value="DNI" class="mb-2"></x-jet-label>
-						<x-jet-input type="text" class="w-full" wire:model.defer="DNI" maxlength="8"
-												 onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+						<x-jet-input type="text" class="w-full bg-gray-100" wire:model.defer="DNI" maxlength="8"
+												 onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" disabled>
 						</x-jet-input>
 						@error('DNI')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 					</div>

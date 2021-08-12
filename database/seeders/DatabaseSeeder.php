@@ -2180,17 +2180,35 @@ class DatabaseSeeder extends Seeder
 			'email' => 'rdpazq@gmail.com',
 			'password' => bcrypt('123456'),
 		]);
-		$paciente = User::factory()->create([
-			'DNI' => '96722339',
+		$paciente01 = User::factory()->create([
+			'DNI' => '95522339',
 			'name' => 'Javier Antonio',
 			'lastname' => 'Acosta Saucedo',
 			'gender' => 'Masculino',
 			'email' => 'paciente@app.com',
 			'password' => bcrypt('123456'),
 		]);
+		$paciente02 = User::factory()->create([
+			'DNI' => '84722339',
+			'name' => 'Marco Antonio',
+			'lastname' => 'Lopez Saldaña',
+			'gender' => 'Masculino',
+			'email' => 'jlopez@gmail.com',
+			'password' => bcrypt('84722339'),
+		]);
+		$paciente03 = User::factory()->create([
+			'DNI' => '67822339',
+			'name' => 'Maria Luisa',
+			'lastname' => 'Vilca Ruiz',
+			'gender' => 'Femenino',
+			'email' => 'mvilca19@gmail.com',
+			'password' => bcrypt('67822339'),
+		]);
 
 		//CREAR HISTORIA MEDICA A USUARIO PACIENTE
-		$paciente->medicalhistory()->create();
+		$paciente01->medicalhistory()->create();
+		$paciente02->medicalhistory()->create();
+		$paciente03->medicalhistory()->create();
 
 		// DERIVAR USUARIO A TABLA DOCTOR
 		$doctor->doctor()->create(['speciality' => 'Medicina General', 'phone' => '123-567']);
@@ -2200,7 +2218,9 @@ class DatabaseSeeder extends Seeder
 		$admin->roles()->attach(1);
 		$doctorHospital->roles()->attach([2, 4]);
 		$doctor->roles()->attach([3, 4]);
-		$paciente->roles()->attach(4);
+		$paciente01->roles()->attach(4);
+		$paciente02->roles()->attach(4);
+		$paciente03->roles()->attach(4);
 
 		// CREACION DE HOSPITAL
 		$hospital = $doctorHospital->hospital()->create(['name' => 'Tomas Lafora']);
@@ -2215,14 +2235,24 @@ class DatabaseSeeder extends Seeder
 		$doctor->doctor->covidteams()->attach(1);
 
 		// CREACION DE CITA
-		$appointment = $paciente->appointments()->create(['date' => '17/08/2021', 'status' => 'Atendido',]);
+		$appointment01 = $paciente01->appointments()->create(['date' => '01/08/2021', 'status' => 'Atendido',]);
+		$appointment02 = $paciente02->appointments()->create(['date' => '10/08/2021', 'status' => 'Retrasado',]);
+		$appointment03 = $paciente03->appointments()->create(['date' => date("d/m/Y"), 'status' => 'Pendiente',]);
+
 		// ASIGNAR DOCTOR A CITA
-		$appointment->doctor()->associate(1);
-		$appointment->save();
+		$appointment01->doctor()->associate(1);
+		$appointment02->doctor()->associate(1);
+		$appointment03->doctor()->associate(1);
+		$appointment01->hospital()->associate(1);
+		$appointment02->hospital()->associate(1);
+		$appointment03->hospital()->associate(1);
+		$appointment01->save();
+		$appointment02->save();
+		$appointment03->save();
 
 
 		// CREAR FICHA DE ATENCION DE LA CITA
-		$attentionsheet = $appointment->attentionsheet()->create();
+		$attentionsheet = $appointment01->attentionsheet()->create();
 		// ASIGNAR FICHA A SU HISTORIA MEDICA
 		$attentionsheet->medicalhistory()->associate(1);
 		$attentionsheet->save();

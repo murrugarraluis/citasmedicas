@@ -7,20 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Appointment extends Model
 {
-    use HasFactory;
-    protected $fillable = [
-        'date',
-        'status'
-    ];
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    public function doctor()
-    {
-        return $this->belongsTo(Doctor::class);
-    }
-    public function attentionsheet(){
-        return $this->hasOne(AttentionSheet::class);
-    }
+	use HasFactory;
+
+	protected $fillable = [
+		'date',
+		'status'
+	];
+
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
+
+	public function doctor()
+	{
+		return $this->belongsTo(Doctor::class);
+	}
+
+	public function hospital()
+	{
+		return $this->belongsTo(Hospital::class);
+	}
+
+	public function attentionsheet()
+	{
+		return $this->hasOne(AttentionSheet::class);
+	}
 }

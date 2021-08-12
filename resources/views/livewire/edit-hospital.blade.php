@@ -8,7 +8,7 @@
 			</svg>
 		</a>
 	</div>
-	<x-jet-dialog-modal wire:model="open" maxWidth="5xl">
+	<x-jet-dialog-modal wire:model="open" maxWidth="2xl">
 		<x-slot name='title'>
 			<p class="font-bold">
 				Editar Hospital
