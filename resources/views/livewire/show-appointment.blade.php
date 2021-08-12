@@ -8,8 +8,8 @@
 				<h2 class="text-2xl font-semibold leading-tight">Citas</h2>
 			</div>
 			<div class="flex flex-col items-center w-full md:flex-row">
-				<div class="flex justify-center items-center">
-					<div class="bg-gray-200 flex justify-center items-center rounded-lg">
+				<div class="flex flex-col md:flex-row justify-center items-center">
+					<div class="bg-gray-200 flex flex-col md:flex-row justify-center items-center rounded-lg">
 						<input id="date" type="date" wire:model.defer="date_start" class="border-2 border-gray-100 rounded-lg">
 						<div class="bg-gray-200 px-2"><span>al</span></div>
 						<input id="date" type="date" wire:model.defer="date_end" class="border-2 border-gray-100 rounded-lg">
