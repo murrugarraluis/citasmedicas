@@ -9,6 +9,7 @@ use Livewire\Component;
 
 class CreateCovidTeam extends Component
 {
+
 	public $open = false;
 	public $name;
 	protected $rules = [

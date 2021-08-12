@@ -124,6 +124,7 @@
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-10">
 										<div class="flex flex-col md:flex-row">
 											{{-- @livewire('info-companies', ['company' => $company], key($company->RUC)) --}}
+											@livewire('add-doctor',  ['team' => $team], key($team->id))
 											@livewire('edit-covid-team', ['team' => $team], key($team->id))
 											<div class="flex">
 												<a wire:click="delete({{ $team->id }})"
