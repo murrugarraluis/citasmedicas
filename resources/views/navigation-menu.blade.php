@@ -19,9 +19,9 @@
 					<x-jet-nav-link href="{{ route('hospital') }} " :active="request()->routeIs('hospital')">
 						Hospitales
 					</x-jet-nav-link>
-					 <x-jet-nav-link href="{{ route('covidteam') }} ">
+					 <x-jet-nav-link href="{{ route('covidteam') }} " :active="request()->routeIs('covidteam')">
 						Equipos Covid
-					</x-jet-nav-link> --}}
+					</x-jet-nav-link>
 					<x-jet-nav-link href="{{ route('doctor') }} " :active="request()->routeIs('doctor')">
 						Doctores
 					</x-jet-nav-link>

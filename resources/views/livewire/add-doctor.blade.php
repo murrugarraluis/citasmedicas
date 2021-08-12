@@ -2,8 +2,8 @@
 	<div class="relative">
 		<button type="button" wire:click="open()"
 			class=" flex border border-green-400 bg-green-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
-			
-			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 					d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
 			</svg>
@@ -67,7 +67,7 @@
 					</div>
 				</div>
                 </div>
-				
+
 
                 <div>
 						<button type="button" wire:click="assign()"
@@ -142,7 +142,7 @@
 									</svg>
 								</div>
 							</th>
-							
+
 							<th
 								class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">
 								<div class="flex justify-between cursor-pointer" wire:click="order('email')">
@@ -195,7 +195,7 @@
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<p class="text-gray-600 whitespace-no-wrap">{{ $doctor->speciality}}</p>
 									</td>
-								
+
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<p class="text-gray-600 whitespace-no-wrap">{{ $doctor->user->email}}</p>
 									</td>
@@ -230,7 +230,7 @@
 										</td>
 										<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-10">
 											<div class="flex flex-col md:flex-row">
-												
+
 												<div class="flex">
 													<a wire:click="delete({{ $doctor->id }})"
 														 class="cursor-pointer border border-red-400 bg-red-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline">
@@ -257,8 +257,8 @@
 					</table>
 				</div>
 			</div>
-			
-            
+
+
 
 
 			</div>
