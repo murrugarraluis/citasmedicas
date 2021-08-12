@@ -14,16 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+	return view('auth.login');
+})->name('main');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+	return view('dashboard');
 })->name('dashboard');
 
 // ROL ADMIN
 Route::get('/hospitales', function () {
-    return view('mantainers.hospital');
+	return view('mantainers.hospital');
 })->name('hospital');
 
 // ROL HOSPITAL
@@ -33,5 +33,10 @@ Route::get('/equipos', function () {
 Route::get('/doctores', function () {
 	return view('mantainers.doctor');
 })->name('doctor');
+
+// ROL DOCTOR
+Route::get('/citas', function () {
+	return view('mantainers.appointment');
+})->name('appointment');
 
 
