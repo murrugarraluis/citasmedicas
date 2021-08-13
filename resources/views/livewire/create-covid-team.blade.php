@@ -19,7 +19,7 @@
 			<div>
 				<div class="my-2">
 					<x-jet-label value="Nombre Equipo Covid" class="mb-2"></x-jet-label>
-					<x-jet-input type="text" class="w-full" wire:	model.defer="name"></x-jet-input>
+					<x-jet-input type="text" class="w-full" wire:model.defer="name"></x-jet-input>
 					@error('name')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 				</div>
 			</div>
