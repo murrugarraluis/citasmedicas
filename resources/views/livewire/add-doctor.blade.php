@@ -232,7 +232,7 @@
 											<div class="flex flex-col md:flex-row">
 
 												<div class="flex">
-													<a wire:click="delete({{ $doctor->id }})"
+													<a wire:click="suprim({{ $doctor->id }})"
 														 class="cursor-pointer border border-red-400 bg-red-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline">
 														<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
 																 stroke="currentColor">

@@ -20,7 +20,7 @@ class AddDoctor extends Component
 	public $direction = 'desc';
 	public $search;
 	public $user, $DNI, $name, $lastname, $speciality;
-	protected $listeners = ['restore', 'destroy', 'render'];
+	protected $listeners = ['restore', 'render'];
     public $open = false;
 	
 	public $team;
@@ -75,7 +75,7 @@ class AddDoctor extends Component
 		$this->reset(['user', 'DNI', 'name', 'lastname', 'speciality']);
 	}
 
-    public function delete($id)
+    public function suprim($id)
 	{
 		try {
 			$user = Doctor::find($id);
