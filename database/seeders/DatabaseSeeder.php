@@ -2142,11 +2142,11 @@ class DatabaseSeeder extends Seeder
 			]);
 		}
 		// CREACION DE ROLES
-		Role::factory()->create(['name' => 'Administrativo']);
-		Role::factory()->create(['name' => 'Hospital']);
-		Role::factory()->create(['name' => 'Doctor']);
-		Role::factory()->create(['name' => 'Paciente']);
-
+//		Role::factory()->create(['name' => 'Administrativo']);
+//		Role::factory()->create(['name' => 'Hospital']);
+//		Role::factory()->create(['name' => 'Doctor']);
+//		Role::factory()->create(['name' => 'Paciente']);
+		$this->call(RoleSeeder::class);
 		// CREACION DE USUARIOS
 		$admin = User::factory()->create([
 			'DNI' => '75579609',
@@ -2215,12 +2215,12 @@ class DatabaseSeeder extends Seeder
 		$doctor01->doctor()->create(['speciality' => 'Medicina General', 'phone' => '123-567']);
 
 		// ASIGNAR ROLES A USUARIOS
-		$admin->roles()->attach(1);
-		$doctorHospital->roles()->attach([2, 4]);
-		$doctor->roles()->attach([3, 4]);
-		$paciente01->roles()->attach(4);
-		$paciente02->roles()->attach(4);
-		$paciente03->roles()->attach(4);
+		$admin->assignRole('Administrativo');
+		$doctorHospital->syncRoles(['Hospital', 'Paciente']);
+		$doctor->syncRoles(['Doctor', 'Paciente']);
+		$paciente01->assignRole('Paciente');
+		$paciente02->assignRole('Paciente');
+		$paciente03->assignRole('Paciente');
 
 		// CREACION DE HOSPITAL
 		$hospital = $doctorHospital->hospital()->create(['name' => 'Tomas Lafora']);

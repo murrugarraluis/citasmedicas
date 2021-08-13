@@ -3,7 +3,7 @@
 
 	<body class="antialiased font-sans bg-gray-200">
 	<div class="container mx-auto px-4 sm:px-8">
-		<div class="pt-8 pb-20">
+		<div class="py-8">
 			<div class="pb-4 text-center md:text-left">
 				<h2 class="text-2xl font-semibold leading-tight">Citas</h2>
 			</div>

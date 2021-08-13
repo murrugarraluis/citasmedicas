@@ -17,26 +17,26 @@ Route::get('/', function () {
 	return view('auth.login');
 })->name('main');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
 	return view('dashboard');
 })->name('dashboard');
 
 // ROL ADMIN
 Route::get('/hospitales', function () {
 	return view('mantainers.hospital');
-})->name('hospital');
+})->middleware('can:hospital')->name('hospital');
 
 // ROL HOSPITAL
 Route::get('/equipos', function () {
 	return view('mantainers.covidteam');
-})->name('covidteam');
+})->middleware('can:covidteam')->name('covidteam');
 Route::get('/doctores', function () {
 	return view('mantainers.doctor');
-})->name('doctor');
+})->middleware('can:doctor')->name('doctor');
 
 // ROL DOCTOR
 Route::get('/citas', function () {
 	return view('mantainers.appointment');
-})->name('appointment');
+})->middleware('can:appointment')->name('appointment');
 
 

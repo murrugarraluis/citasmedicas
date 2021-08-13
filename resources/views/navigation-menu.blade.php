@@ -15,19 +15,26 @@
 					{{--					<x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
 					{{--						{{ __('Dashboard') }}--}}
 					{{--					</x-jet-nav-link>--}}
-
-					<x-jet-nav-link href="{{ route('hospital') }} " :active="request()->routeIs('hospital')">
-						Hospitales
-					</x-jet-nav-link>
-					 <x-jet-nav-link href="{{ route('covidteam') }} " :active="request()->routeIs('covidteam')">
-						Equipos Covid
-					</x-jet-nav-link>
-					<x-jet-nav-link href="{{ route('doctor') }} " :active="request()->routeIs('doctor')">
-						Doctores
-					</x-jet-nav-link>
-					<x-jet-nav-link href="{{ route('appointment') }} " :active="request()->routeIs('appointment')">
-						Citas
-					</x-jet-nav-link>
+					@can('hospital')
+						<x-jet-nav-link href="{{ route('hospital') }} " :active="request()->routeIs('hospital')">
+							Hospitales
+						</x-jet-nav-link>
+					@endcan
+					@can('covidteam')
+						<x-jet-nav-link href="{{ route('covidteam') }} " :active="request()->routeIs('covidteam')">
+							Equipos Covid
+						</x-jet-nav-link>
+					@endcan
+					@can('doctor')
+						<x-jet-nav-link href="{{ route('doctor') }} " :active="request()->routeIs('doctor')">
+							Doctores
+						</x-jet-nav-link>
+					@endcan
+					@can('appointment')
+						<x-jet-nav-link href="{{ route('appointment') }} " :active="request()->routeIs('appointment')">
+							Citas
+						</x-jet-nav-link>
+					@endcan
 				</div>
 			</div>
 
@@ -166,12 +173,26 @@
 			{{--			<x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
 			{{--				{{ __('Dashboard') }}--}}
 			{{--			</x-jet-responsive-nav-link>--}}
-			<x-jet-responsive-nav-link href="{{ route('hospital') }}" :active="request()->routeIs('hospital')">
-				Hospitales
-			</x-jet-responsive-nav-link>
-			<x-jet-responsive-nav-link href="{{ route('doctor') }}" :active="request()->routeIs('doctor')">
-				Doctores
-			</x-jet-responsive-nav-link>
+			@can('hospital')
+				<x-jet-responsive-nav-link href="{{ route('hospital') }}" :active="request()->routeIs('hospital')">
+					Hospitales
+				</x-jet-responsive-nav-link>
+			@endcan
+			@can('covidteam')
+				<x-jet-responsive-nav-link href="{{ route('covidteam') }}" :active="request()->routeIs('covidteam')">
+					Equipos Covid
+				</x-jet-responsive-nav-link>
+			@endcan
+			@can('doctor')
+				<x-jet-responsive-nav-link href="{{ route('doctor') }}" :active="request()->routeIs('doctor')">
+					Doctores
+				</x-jet-responsive-nav-link>
+			@endcan
+			@can('appointment')
+				<x-jet-responsive-nav-link href="{{ route('appointment') }}" :active="request()->routeIs('appointment')">
+					Citas
+				</x-jet-responsive-nav-link>
+			@endcan
 		</div>
 
 		<!-- Responsive Settings Options -->
