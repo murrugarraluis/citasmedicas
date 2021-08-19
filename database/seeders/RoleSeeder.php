@@ -25,6 +25,7 @@ class RoleSeeder extends Seeder
 		Permission::create(['name'=>'covidteam'])->assignRole($role02);
 		Permission::create(['name'=>'doctor'])->assignRole($role02);
 
-		Permission::create(['name'=>'appointment'])->assignRole($role03);
+		Permission::create(['name'=>'appointment'])->assignRole($role04);
+		Permission::create(['name'=>'create-appointment'])->assignRole($role04);
 	}
 }

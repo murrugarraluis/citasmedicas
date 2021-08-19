@@ -34,9 +34,12 @@ Route::get('/doctores', function () {
 	return view('mantainers.doctor');
 })->middleware('can:doctor')->name('doctor');
 
-// ROL DOCTOR
+// ROL PACIENTE
 Route::get('/citas', function () {
 	return view('mantainers.appointment');
 })->middleware('can:appointment')->name('appointment');
+Route::get('/citas/nueva', function () {
+	return view('mantainers.create-appointment');
+})->middleware('can:create-appointment')->name('create-appointment');
 
 

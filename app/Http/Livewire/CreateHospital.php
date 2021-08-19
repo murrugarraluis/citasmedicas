@@ -36,10 +36,10 @@ class CreateHospital extends Component
 	{
 		$this->validate();
 		try {
-			if (Hospital::where('name', $this->name, 'distritic_id',$this->distritic)->count()) {
+			if (Hospital::where('name', $this->name)->where('distritic_id',$this->distritic)->count()) {
 				$this->emit('info', 'Hospital Ya Registrado');
 			} else {
-				if (Hospital::withTrashed()->where('name', $this->name,'distritic_id',$this->distritic)->count()) {
+				if (Hospital::withTrashed()->where('name', $this->name)->where('distritic_id',$this->distritic)->count()) {
 					// Llamar a methodo de confirmarcion de componente show-categories
 					$objetos = Hospital::withTrashed()->where('name', $this->name,'distritic_id',$this->distritic)->get();
 					// recorrer la colletion y extraer el IDs
@@ -90,10 +90,13 @@ class CreateHospital extends Component
 	{
 		$provincies = Departament::find($id)->provincies;
 		$this->provincies = $provincies;
+		$this->distritics = null;
+		$this->reset(['provincie','distritic']);
 	}
 	public function updatedProvincie($id)
 	{
 		$distritics = Provincie::find($id)->distritics;
 		$this->distritics = $distritics;
+		$this->reset(['distritic']);
 	}
 }

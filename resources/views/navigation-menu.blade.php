@@ -12,9 +12,6 @@
 
 				<!-- Navigation Links -->
 				<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-					{{--					<x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
-					{{--						{{ __('Dashboard') }}--}}
-					{{--					</x-jet-nav-link>--}}
 					@can('hospital')
 						<x-jet-nav-link href="{{ route('hospital') }} " :active="request()->routeIs('hospital')">
 							Hospitales
@@ -33,6 +30,12 @@
 					@can('appointment')
 						<x-jet-nav-link href="{{ route('appointment') }} " :active="request()->routeIs('appointment')">
 							Citas
+						</x-jet-nav-link>
+					@endcan
+					@can('create-appointment')
+						<x-jet-nav-link href="{{ route('create-appointment') }} "
+														:active="request()->routeIs('create-appointment')">
+							Reservar Cita
 						</x-jet-nav-link>
 					@endcan
 				</div>
@@ -191,6 +194,11 @@
 			@can('appointment')
 				<x-jet-responsive-nav-link href="{{ route('appointment') }}" :active="request()->routeIs('appointment')">
 					Citas
+				</x-jet-responsive-nav-link>
+			@endcan
+			@can('create-appointment')
+				<x-jet-responsive-nav-link href="{{ route('create-appointment') }}" :active="request()->routeIs('create-appointment')">
+					Reservar Cita
 				</x-jet-responsive-nav-link>
 			@endcan
 		</div>

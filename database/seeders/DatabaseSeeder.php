@@ -2142,10 +2142,6 @@ class DatabaseSeeder extends Seeder
 			]);
 		}
 		// CREACION DE ROLES
-//		Role::factory()->create(['name' => 'Administrativo']);
-//		Role::factory()->create(['name' => 'Hospital']);
-//		Role::factory()->create(['name' => 'Doctor']);
-//		Role::factory()->create(['name' => 'Paciente']);
 		$this->call(RoleSeeder::class);
 		// CREACION DE USUARIOS
 		$admin = User::factory()->create([
@@ -2235,24 +2231,34 @@ class DatabaseSeeder extends Seeder
 		$doctor->doctor->covidteams()->attach(1);
 
 		// CREACION DE CITA
-		$appointment01 = $paciente01->appointments()->create(['date' => '01/08/2021', 'status' => 'Atendido',]);
-		$appointment02 = $paciente02->appointments()->create(['date' => '10/08/2021', 'status' => 'Retrasado',]);
-		$appointment03 = $paciente03->appointments()->create(['date' => date("d/m/Y"), 'status' => 'Pendiente',]);
+		$appointment01 = $paciente01->appointments()->create(['date' => '01/07/2021', 'status' => 'Atendido',]);
+		$appointment02 = $paciente01->appointments()->create(['date' => '10/07/2021', 'status' => 'Retrasado',]);
+		$appointment03 = $paciente01->appointments()->create(['date' => date("d/m/Y"), 'status' => 'Pendiente',]);
+		$appointment04 = $paciente02->appointments()->create(['date' => '10/08/2021', 'status' => 'Retrasado',]);
+		$appointment05 = $paciente03->appointments()->create(['date' => date("d/m/Y"), 'status' => 'Pendiente',]);
 
-		// ASIGNAR DOCTOR A CITA
+		// ASIGNAR DOCTOR Y HOSPITAL A CITA
 		$appointment01->doctor()->associate(1);
 		$appointment02->doctor()->associate(1);
 		$appointment03->doctor()->associate(1);
+		$appointment04->doctor()->associate(1);
+		$appointment05->doctor()->associate(1);
 		$appointment01->hospital()->associate(1);
 		$appointment02->hospital()->associate(1);
 		$appointment03->hospital()->associate(1);
+		$appointment04->hospital()->associate(1);
+		$appointment05->hospital()->associate(1);
 		$appointment01->save();
 		$appointment02->save();
 		$appointment03->save();
+		$appointment04->save();
+		$appointment05->save();
 
 
 		// CREAR FICHA DE ATENCION DE LA CITA
-		$attentionsheet = $appointment01->attentionsheet()->create();
+		$attentionsheet = $appointment01->attentionsheet()->create([
+			'description' => 'El paciente presentó un cuadro de gripe moderado, se le recetó el consumo del medicamento parecetamol por 3 dias cada 8 horas'
+		]);
 		// ASIGNAR FICHA A SU HISTORIA MEDICA
 		$attentionsheet->medicalhistory()->associate(1);
 		$attentionsheet->save();

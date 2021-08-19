@@ -20,7 +20,8 @@
 			</div>
 			<div>
 				<x-jet-label for="lastname" value="{{ __('Apellido') }}"/>
-				<x-jet-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus
+				<x-jet-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')"
+										 required autofocus
 										 autocomplete="lastname"/>
 			</div>
 			<div>
@@ -31,7 +32,7 @@
 					<option value="" hidden>Seleccione</option>
 					<option value="Masculino">Masculino</option>
 					<option value="Femenino">Femenino</option>
-select>
+				</select>
 			</div>
 			<div class="mt-4">
 				<x-jet-label for="email" value="{{ __('Email') }}"/>
