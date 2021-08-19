@@ -15,6 +15,7 @@ class CreateAppointment extends Component
 	public $departament = null, $provincie = null, $distritic = null, $hospital = null, $doctor = null;
 	public $hospitals, $doctors;
 	public $date = null;
+	public $appointments = null;
 	protected $rules = [
 		'departament' => 'required',
 		'provincie' => 'required',
@@ -27,9 +28,9 @@ class CreateAppointment extends Component
 	public function render()
 	{
 		$departaments = Departament::all();
-		$appointments = $this->date;
-		$this->dispatchBrowserEvent('DOMContentLoaded',['appointments'=>$appointments]);
-		return view('livewire.create-appointment', compact('departaments','appointments'));
+		$this->dispatchBrowserEvent('DOMContentLoaded');
+//		$appointments = $this->appointments;
+		return view('livewire.create-appointment', compact('departaments'));
 	}
 
 	public function store()
@@ -46,7 +47,7 @@ class CreateAppointment extends Component
 				$appointment01->hospital()->associate($this->hospital);
 				$appointment01->save();
 				$this->reset(['departament', 'provincie', 'distritic', 'hospital', 'doctor', 'date']);
-				$this->emit('alert', 'Cita Reservada');
+				$this->redirect('/citas');
 			}
 		} catch (Exception $e) {
 			$this->emit('error', $e->getMessage());
@@ -60,7 +61,7 @@ class CreateAppointment extends Component
 		$this->distritics = null;
 		$this->hospitals = null;
 		$this->doctors = null;
-		$this->reset(['provincie', 'distritic', 'hospital', 'doctor']);
+		$this->reset(['provincie', 'distritic', 'hospital', 'doctor','appointments']);
 	}
 
 	public function updatedProvincie($id)
@@ -69,7 +70,7 @@ class CreateAppointment extends Component
 		$this->distritics = $distritics;
 		$this->hospitals = null;
 		$this->doctors = null;
-		$this->reset(['distritic', 'hospital', 'doctor']);
+		$this->reset(['distritic', 'hospital', 'doctor','appointments']);
 	}
 
 	public function updatedDistritic($id)
@@ -77,7 +78,7 @@ class CreateAppointment extends Component
 		$hospitals = Distritic::find($id)->hospitals;
 		$this->hospitals = $hospitals;
 		$this->doctors = null;
-		$this->reset(['hospital', 'doctor']);
+		$this->reset(['hospital', 'doctor','appointments']);
 	}
 
 	public function updatedHospital($id)
@@ -85,5 +86,10 @@ class CreateAppointment extends Component
 		$doctors = Hospital::find($id)->doctors;
 		$this->doctors = $doctors;
 		$this->reset(['doctor']);
+	}
+	public function updatedDoctor($id)
+	{
+		$appointments = Appointment::where('doctor_id',$id)->where('status','!=','Atendido')->get();
+		$this->appointments = compact('appointments');
 	}
 }

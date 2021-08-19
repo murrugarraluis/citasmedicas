@@ -2231,28 +2231,28 @@ class DatabaseSeeder extends Seeder
 		$doctor->doctor->covidteams()->attach(1);
 
 		// CREACION DE CITA
-		$appointment01 = $paciente01->appointments()->create(['date' => '01/07/2021', 'status' => 'Atendido',]);
-		$appointment02 = $paciente01->appointments()->create(['date' => '10/07/2021', 'status' => 'Retrasado',]);
-		$appointment03 = $paciente01->appointments()->create(['date' => date("d/m/Y"), 'status' => 'Pendiente',]);
-		$appointment04 = $paciente02->appointments()->create(['date' => '10/08/2021', 'status' => 'Retrasado',]);
-		$appointment05 = $paciente03->appointments()->create(['date' => date("d/m/Y"), 'status' => 'Pendiente',]);
+		$appointment01 = $paciente01->appointments()->create(['date' => '2021-07-12T09:00', 'status' => 'Atendido',]);
+		$appointment02 = $paciente01->appointments()->create(['date' => '2021-07-10T10:00', 'status' => 'Retrasado',]);
+		$appointment03 = $paciente01->appointments()->create(['date' => date("Y-m-d")."T".date("H:m"), 'status' => 'Pendiente',]);
+		$appointment04 = $paciente02->appointments()->create(['date' => '2021-08-10T10:00', 'status' => 'Retrasado',]);
+//		$appointment05 = $paciente03->appointments()->create(['date' => date("d/m/Y"), 'status' => 'Pendiente',]);
 
 		// ASIGNAR DOCTOR Y HOSPITAL A CITA
 		$appointment01->doctor()->associate(1);
 		$appointment02->doctor()->associate(1);
 		$appointment03->doctor()->associate(1);
 		$appointment04->doctor()->associate(1);
-		$appointment05->doctor()->associate(1);
+//		$appointment05->doctor()->associate(1);
 		$appointment01->hospital()->associate(1);
 		$appointment02->hospital()->associate(1);
 		$appointment03->hospital()->associate(1);
 		$appointment04->hospital()->associate(1);
-		$appointment05->hospital()->associate(1);
+//		$appointment05->hospital()->associate(1);
 		$appointment01->save();
 		$appointment02->save();
 		$appointment03->save();
 		$appointment04->save();
-		$appointment05->save();
+//		$appointment05->save();
 
 
 		// CREAR FICHA DE ATENCION DE LA CITA

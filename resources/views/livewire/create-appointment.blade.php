@@ -89,13 +89,35 @@
 	<script>
 		window.addEventListener('DOMContentLoaded', event => {
 			var myDate = @this.date;
+			var Appointments = @this.appointments;
 			var f = new Date();
 			var m = (f.getMonth() + 1).toString().length < 2 ? '0' + (f.getMonth() + 1) : (f.getMonth() + 1);
-			var h = f.getHours().toString().length < 2 ? '0' + (f.getHours()+1) + ':00' : (f.getHours()+1) + ':00';
+			var h = f.getHours().toString().length < 2 ? '0' + (f.getHours() + 1) + ':00' : (f.getHours() + 1) + ':00';
 			var fecha = f.getFullYear() + "-" + m + "-" + f.getDate();
 			var fechaGlobal = f.getFullYear() + "-" + m + "-" + f.getDate() + 'T' + h;
-			console.log(fechaGlobal);
 			var calendarEl = document.getElementById('calendar');
+			var ArrayEvents = [
+				{
+					groupId: 999,
+					title: 'Mi Cita',
+					start: myDate
+				},
+				{
+					groupId: 'testGroupId',
+					start: fechaGlobal,
+					end: '4021-08-18T16:00',
+					display: 'inverse-background',
+					color: 'red',
+				}
+			];
+			if (Appointments != null) {
+				let array = Appointments['appointments'];
+				for (let val of array) {
+					var prueba = {groupId: 999, title: 'Ocupado', start: val['date'], color: 'red'};
+					ArrayEvents.push(prueba);
+				}
+			}
+
 			var calendar = new FullCalendar.Calendar(calendarEl, {
 					locale: 'es',
 					initialDate: fecha,
@@ -137,35 +159,16 @@
 						var m = (dateF.getMonth() + 1).toString().length < 2 ? '0' + (dateF.getMonth() + 1) : (dateF.getMonth() + 1);
 						var h = dateF.getHours().toString().length < 2 ? '0' + (dateF.getHours()) + ':00' : (dateF.getHours()) + ':00';
 						var fechaM = dateF.getFullYear() + "-" + m + "-" + dateF.getDate() + 'T' + h;
-						if (fechaM < fechaGlobal){
-							Livewire.emit('info','no se puede realizar la cita en esta fecha')
-						}
-						else{
+						if (fechaM < fechaGlobal) {
+							Livewire.emit('info', 'no se puede realizar la cita en esta fecha')
+						} else {
 							inputF.value = fechaM;
-							@this.date= fechaM;
+						@this.date
+							= fechaM;
 							fechaM = null;
 						}
 					},
-					events: [
-						{
-							groupId: 999,
-							title: 'Mi Cita',
-							start: myDate
-						},
-						{
-							groupId: 999,
-							title: 'Ocupado',
-							start: '2021-08-20T13:00',
-							color: 'red',
-						},
-						{
-							groupId: 'testGroupId',
-							start: fechaGlobal,
-							end: '4021-08-18T16:00',
-							display: 'inverse-background',
-							color: 'red',
-						}
-					]
+					events: ArrayEvents,
 				})
 			;
 			calendar.render();
