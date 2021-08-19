@@ -14,7 +14,7 @@ class CreateAppointment extends Component
 	public $provincies = null, $distritics = null;
 	public $departament = null, $provincie = null, $distritic = null, $hospital = null, $doctor = null;
 	public $hospitals, $doctors;
-	public $date;
+	public $date = null;
 	protected $rules = [
 		'departament' => 'required',
 		'provincie' => 'required',
@@ -27,25 +27,26 @@ class CreateAppointment extends Component
 	public function render()
 	{
 		$departaments = Departament::all();
-		return view('livewire.create-appointment', compact('departaments'));
+		$appointments = $this->date;
+		$this->dispatchBrowserEvent('DOMContentLoaded',['appointments'=>$appointments]);
+		return view('livewire.create-appointment', compact('departaments','appointments'));
 	}
 
 	public function store()
 	{
 		$this->validate();
 		try {
-			if (Appointment::where('date',$this->date)->where('doctor_id',$this->doctor)->count()){
+			if (Appointment::where('date', $this->date)->where('doctor_id', $this->doctor)->count()) {
 				$this->emit('info', 'No se puede reservar una cita en este horario');
-			}
-			else{
-			// CREACION DE CITA
-			$appointment01 = auth()->user()->appointments()->create(['date' => $this->date, 'status' => 'Pendiente']);
-			// ASIGNAR DOCTOR Y HOSPITAL A CITA
-			$appointment01->doctor()->associate($this->doctor);
-			$appointment01->hospital()->associate($this->hospital);
-			$appointment01->save();
-			$this->reset(['departament', 'provincie', 'distritic', 'hospital', 'doctor', 'date']);
-			$this->emit('alert', 'Cita Reservada');
+			} else {
+				// CREACION DE CITA
+				$appointment01 = auth()->user()->appointments()->create(['date' => $this->date, 'status' => 'Pendiente']);
+				// ASIGNAR DOCTOR Y HOSPITAL A CITA
+				$appointment01->doctor()->associate($this->doctor);
+				$appointment01->hospital()->associate($this->hospital);
+				$appointment01->save();
+				$this->reset(['departament', 'provincie', 'distritic', 'hospital', 'doctor', 'date']);
+				$this->emit('alert', 'Cita Reservada');
 			}
 		} catch (Exception $e) {
 			$this->emit('error', $e->getMessage());

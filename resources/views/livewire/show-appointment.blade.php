@@ -205,7 +205,7 @@
 				</div>
 			</div>
 			<div class="py-2 px-4">
-				{{--				{{ $hospitals->links() }}--}}
+								{{ $appointments->links() }}
 			</div>
 		</div>
 	</div>
