@@ -71,7 +71,7 @@
 						</select>
 						@error('doctor')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 					</div>
-					<div>
+					<div class="hidden">
 						<x-jet-label value="Fecha y Hora" class="mb-2"></x-jet-label>
 						<input id="date" type="datetime-local" wire:model="date" disabled>
 						@error('date')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
@@ -154,18 +154,24 @@
 						hour12: true
 					},
 					dateClick: function (info) {
-						var inputF = document.getElementById("date");
-						var dateF = new Date(info.dateStr);
-						var m = (dateF.getMonth() + 1).toString().length < 2 ? '0' + (dateF.getMonth() + 1) : (dateF.getMonth() + 1);
-						var h = dateF.getHours().toString().length < 2 ? '0' + (dateF.getHours()) + ':00' : (dateF.getHours()) + ':00';
-						var fechaM = dateF.getFullYear() + "-" + m + "-" + dateF.getDate() + 'T' + h;
-						if (fechaM < fechaGlobal) {
-							Livewire.emit('info', 'no se puede realizar la cita en esta fecha')
-						} else {
-							inputF.value = fechaM;
-						@this.date
-							= fechaM;
-							fechaM = null;
+						var selectedDoctor = @this.doctor;
+						if(selectedDoctor != null){
+							var inputF = document.getElementById("date");
+							var dateF = new Date(info.dateStr);
+							var m = (dateF.getMonth() + 1).toString().length < 2 ? '0' + (dateF.getMonth() + 1) : (dateF.getMonth() + 1);
+							var h = dateF.getHours().toString().length < 2 ? '0' + (dateF.getHours()) + ':00' : (dateF.getHours()) + ':00';
+							var fechaM = dateF.getFullYear() + "-" + m + "-" + dateF.getDate() + 'T' + h;
+							if (fechaM < fechaGlobal) {
+								Livewire.emit('info', 'no se puede realizar la cita en esta fecha')
+							} else {
+								inputF.value = fechaM;
+							@this.date
+								= fechaM;
+								fechaM = null;
+							}
+						}
+						else{
+							Livewire.emit('info', 'Antes de escoger un horario, por favor complete todos los campos')
 						}
 					},
 					events: ArrayEvents,
