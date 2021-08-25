@@ -7,25 +7,25 @@
 			<div class="pb-4 text-center md:text-left">
 				<h2 class="text-2xl font-semibold leading-tight">Citas</h2>
 			</div>
-			{{--			<div class="flex flex-col items-center w-full md:flex-row">--}}
-			{{--				<div class="flex flex-col md:flex-row justify-center items-center">--}}
-			{{--					<div class="bg-gray-200 flex flex-col md:flex-row justify-center items-center rounded-lg">--}}
-			{{--						<input id="date" type="date" wire:model.defer="date_start" class="border-2 border-gray-100 rounded-lg">--}}
-			{{--						<div class="bg-gray-200 px-2"><span>al</span></div>--}}
-			{{--						<input id="date" type="date" wire:model.defer="date_end" class="border-2 border-gray-100 rounded-lg">--}}
-			{{--					</div>--}}
-			{{--					<div>--}}
-			{{--						<button type="button" wire:click="search()"--}}
-			{{--										class=" flex border border-blue-400 bg-blue-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-blue-600 focus:outline-none focus:shadow-outline">--}}
-			{{--							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"--}}
-			{{--									 stroke="currentColor">--}}
-			{{--								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"--}}
-			{{--											d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>--}}
-			{{--							</svg>--}}
-			{{--						</button>--}}
-			{{--					</div>--}}
-			{{--				</div>--}}
-			{{--			</div>--}}
+{{--						<div class="flex flex-col items-center w-full md:flex-row">--}}
+{{--							<div class="flex flex-col md:flex-row justify-center items-center">--}}
+{{--								<div class="bg-gray-200 flex flex-col md:flex-row justify-center items-center rounded-lg">--}}
+{{--									<input id="date" type="date" wire:model.defer="date_start" class="border-2 border-gray-100 rounded-lg">--}}
+{{--									<div class="bg-gray-200 px-2"><span>al</span></div>--}}
+{{--									<input id="date" type="date" wire:model.defer="date_end" class="border-2 border-gray-100 rounded-lg">--}}
+{{--								</div>--}}
+{{--								<div>--}}
+{{--									<button type="button" wire:click="search()"--}}
+{{--													class=" flex border border-blue-400 bg-blue-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-blue-600 focus:outline-none focus:shadow-outline">--}}
+{{--										<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"--}}
+{{--												 stroke="currentColor">--}}
+{{--											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"--}}
+{{--														d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>--}}
+{{--										</svg>--}}
+{{--									</button>--}}
+{{--								</div>--}}
+{{--							</div>--}}
+{{--						</div>--}}
 			<div class="flex flex-col items-center w-full md:flex-row">
 				<div class="my-2 w-full items-center flex sm:flex-row flex-col">
 					<div class="flex flex-row mb-1 sm:mb-0">

@@ -1674,6 +1674,24 @@ select {
 .bg-opacity-25 {
 	--tw-bg-opacity: 0.25;
 }
+.bg-opacity-0 {
+	--tw-bg-opacity: 0;
+}
+.bg-hero-pattern-medic {
+	background-image: url(/images/medicos4.jpg?7a6f4c6eac8b5e4775554c60d26817c1);
+}
+.bg-cover {
+	background-size: cover;
+}
+.bg-fixed {
+	background-attachment: fixed;
+}
+.bg-center {
+	background-position: center;
+}
+.bg-no-repeat {
+	background-repeat: no-repeat;
+}
 .fill-current {
 	fill: currentColor;
 }
@@ -2530,16 +2548,8 @@ select {
 		grid-column: span 1 / span 1;
 	}
 
-	.md\:col-start-3 {
-		grid-column-start: 3;
-	}
-
 	.md\:col-start-1 {
 		grid-column-start: 1;
-	}
-
-	.md\:col-end-2 {
-		grid-column-end: 2;
 	}
 
 	.md\:col-end-4 {
@@ -2601,6 +2611,11 @@ select {
 
 	.md\:text-left {
 		text-align: left;
+	}
+
+	.md\:text-xl {
+		font-size: 1.25rem;
+		line-height: 1.75rem;
 	}
 }
 @media (min-width: 1024px) {

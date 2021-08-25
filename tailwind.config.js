@@ -14,6 +14,9 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+					backgroundImage: theme => ({
+						'hero-pattern-medic': "url('../../public/img/medicos4.jpg')"
+					})
         },
     },
 
