@@ -53,17 +53,17 @@
 						<table class="min-w-full leading-normal">
 							<thead>
 								<tr>
-									<th
-										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">
-										<div class="flex justify-between cursor-pointer" wire:click="order('id')">
-											id
-											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-												stroke="currentColor">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-													d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
-											</svg>
-										</div>
-									</th>
+{{--									<th--}}
+{{--										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">--}}
+{{--										<div class="flex justify-between cursor-pointer" wire:click="order('id')">--}}
+{{--											id--}}
+{{--											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"--}}
+{{--												stroke="currentColor">--}}
+{{--												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"--}}
+{{--													d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />--}}
+{{--											</svg>--}}
+{{--										</div>--}}
+{{--									</th>--}}
 									<th
 										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">
 										<div class="flex justify-between cursor-pointer" wire:click="order('name')">
@@ -88,10 +88,10 @@
 								@if ($teams->count())
 								@foreach ($teams as $team)
 								<tr>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-10">
-										<p class="text-gray-600 font-semibold whitespace-no-wrap">
-											{{ $team->id }}</p>
-									</td>
+{{--									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-10">--}}
+{{--										<p class="text-gray-600 font-semibold whitespace-no-wrap">--}}
+{{--											{{ $team->id }}</p>--}}
+{{--									</td>--}}
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<p class="text-gray-600 whitespace-no-wrap">{{ $team->name }}</p>
 									</td>
@@ -130,7 +130,7 @@
 										<div>
 										@livewire('edit-covid-team', ['team' => $team], key("B".$team->id))
 										</div>
-											
+
 											<div class="flex">
 												<a wire:click="delete({{ $team->id }})"
 													class="cursor-pointer border border-red-400 bg-red-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline">

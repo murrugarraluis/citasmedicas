@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Appointment;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Exception;
 
 class ShowAppointment extends Component
 {
@@ -61,6 +62,19 @@ class ShowAppointment extends Component
 		}
 
 		return view('livewire.show-appointment', compact('appointments'));
+	}
+	public function delete($id)
+	{
+		$this->emit('delete', 'Está Apunto de Eliminar la Reservación de la Cita', $id);
+	}
+	public function destroy($id)
+	{
+		try {
+			Appointment::destroy($id);
+			$this->emit('alert', 'Reservación Eliminada');
+		} catch (Exception $e) {
+			$this->emit('error', $e->getMessage());
+		}
 	}
 
 	public function order($sort)

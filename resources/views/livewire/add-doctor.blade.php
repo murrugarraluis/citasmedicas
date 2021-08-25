@@ -20,7 +20,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
                 <div class="flex justify-center items-center">
 					<div>
-						<x-jet-input type="text" class="w-full" wire:model.defer="DNI" placeholder="DNI"></x-jet-input>
+						<x-jet-input type="text" class="w-full" wire:model.defer="DNI" placeholder="Documento"></x-jet-input>
 						@error('DNI')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 					</div>
 					<div>
@@ -101,7 +101,7 @@
 							<th
 								class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">
 								<div class="flex justify-between cursor-pointer" wire:click="order('DNI')">
-									DNI
+									Documento
 									<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
 											 stroke="currentColor">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

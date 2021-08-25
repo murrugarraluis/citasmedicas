@@ -51,7 +51,7 @@ class CreateDoctor extends Component
 					]);
 					$user->doctor()->create(['speciality' => trim(ucfirst($this->specialty)), 'phone' => trim($this->phone)]);
 					$user->doctor->hospitals()->attach(auth()->user()->hospital->id);
-					$user->roles()->attach([3, 4]);
+					$user->assignRole('Doctor');
 					$this->default();
 					$this->emitTo('show-doctor', 'render');
 					$this->emit('alert', 'Doctor Agregado');

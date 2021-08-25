@@ -73,10 +73,10 @@
 					</div>
 					@role('Doctor')
 					<div class="md:col-start-1	md:col-end-4 lg:col-span-1">
-						<x-jet-label value="DNI" class="mb-2"></x-jet-label>
+						<x-jet-label value="Documento" class="mb-2"></x-jet-label>
 						<div class="flex items-center w-full">
 							<div class="w-full">
-								<x-jet-input type="text" class="w-full" wire:model.defer="DNI" placeholder="DNI"></x-jet-input>
+								<x-jet-input type="text" class="w-full" wire:model.defer="DNI"></x-jet-input>
 								@error('DNI')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 							</div>
 							<div>
@@ -104,14 +104,12 @@
 						<div class="my-2 w-full">
 							<x-jet-label value="Nombre" class="mb-2"></x-jet-label>
 							<x-jet-input type="text" class="w-full bg-gray-200 text-gray-600" wire:model.defer="name"
-													 placeholder="Nombre"
 													 disabled></x-jet-input>
 							@error('name')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 						</div>
 						<div class="my-2 w-full">
 							<x-jet-label value="Apellido" class="mb-2"></x-jet-label>
 							<x-jet-input type="text" class="w-full bg-gray-200 text-gray-600" wire:model.defer="lastname"
-													 placeholder="Apellido"
 													 disabled></x-jet-input>
 							@error('lastname')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 						</div>

@@ -8,23 +8,23 @@
 
 		<form method="POST" action="{{ route('register') }}">
 			@csrf
-			<div>
-				<x-jet-label for="DNI" value="{{ __('DNI') }}"/>
+			<div class="mt-3">
+				<x-jet-label for="DNI" value="{{ __('Documento') }}"/>
 				<x-jet-input id="DNI" class="block mt-1 w-full" type="text" name="DNI" :value="old('DNI')" required autofocus
 										 autocomplete="DNI"/>
 			</div>
-			<div>
+			<div class="mt-3">
 				<x-jet-label for="name" value="{{ __('Nombre') }}"/>
 				<x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus
 										 autocomplete="name"/>
 			</div>
-			<div>
+			<div class="mt-3">
 				<x-jet-label for="lastname" value="{{ __('Apellido') }}"/>
 				<x-jet-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')"
 										 required autofocus
 										 autocomplete="lastname"/>
 			</div>
-			<div>
+			<div class="mt-3">
 				<x-jet-label for="gender" value="{{ __('Sexo') }}"/>
 				<select id="gender" type="text" name="gender" :value="old('gender')" required autofocus
 								autocomplete="gender"
@@ -34,18 +34,18 @@
 					<option value="Femenino">Femenino</option>
 				</select>
 			</div>
-			<div class="mt-4">
+			<div class="mt-3">
 				<x-jet-label for="email" value="{{ __('Email') }}"/>
 				<x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required/>
 			</div>
 
-			<div class="mt-4">
+			<div class="mt-3">
 				<x-jet-label for="password" value="{{ __('Password') }}"/>
 				<x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
 										 autocomplete="new-password"/>
 			</div>
 
-			<div class="mt-4">
+			<div class="mt-3">
 				<x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}"/>
 				<x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation"
 										 required autocomplete="new-password"/>
@@ -70,11 +70,11 @@
 
 			<div class="flex items-center justify-end mt-4">
 				<a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-					{{ __('Already registered?') }}
+					{{ __('¿Ya está registrado?') }}
 				</a>
 
 				<x-jet-button class="ml-4">
-					{{ __('Register') }}
+					{{ __('Registrar') }}
 				</x-jet-button>
 			</div>
 		</form>

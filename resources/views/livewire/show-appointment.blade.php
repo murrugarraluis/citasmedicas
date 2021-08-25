@@ -137,7 +137,7 @@
 										@endrole
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-600 whitespace-no-wrap">{{$appointment->date}}</p>
+										<p class="text-gray-600 whitespace-no-wrap">{{date("d/m/Y h:i a",strtotime($appointment->date))}}</p>
 									</td>
 									@if ($appointment->status == 'Retrasado')
 										<td class="px-5 py-5 border-b border-gray-200 bg-transparent text-sm w-10">

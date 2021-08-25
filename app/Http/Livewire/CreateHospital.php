@@ -61,7 +61,7 @@ class CreateHospital extends Component
 							'email' => trim($this->email),
 							'password' => bcrypt(trim($this->DNI)),
 						]);
-						$user->roles()->attach([2,4]);
+						$user->assignRole('Hospital');
 						$hospital = $user->hospital()->create(['name' => trim(ucfirst($this->name))]);
 						$hospital->distritic()->associate($this->distritic)->save();
 
