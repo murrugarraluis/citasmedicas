@@ -80,7 +80,7 @@
 								@error('DNI')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 							</div>
 							<div>
-								<button type="button" wire:click="search()"
+								<button type="button" wire:click="searchPerson()"
 												class=" flex border border-blue-400 bg-blue-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-blue-600 focus:outline-none focus:shadow-outline">
 									<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
 											 stroke="currentColor">

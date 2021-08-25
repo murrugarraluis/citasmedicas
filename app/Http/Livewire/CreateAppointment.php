@@ -7,7 +7,9 @@ use App\Models\Departament;
 use App\Models\Distritic;
 use App\Models\Hospital;
 use App\Models\Provincie;
+use App\Models\User;
 use Livewire\Component;
+use Exception;
 
 class CreateAppointment extends Component
 {
@@ -16,6 +18,7 @@ class CreateAppointment extends Component
 	public $hospitals, $doctors;
 	public $date = null;
 	public $appointments = null;
+	public $user, $DNI, $name, $lastname;
 	protected $rules = [
 		'departament' => 'required',
 		'provincie' => 'required',
@@ -35,23 +38,72 @@ class CreateAppointment extends Component
 
 	public function store()
 	{
-		$this->validate();
+		if (auth()->user()->hasRole('Paciente')) {
+			$this->validate();
+		} elseif (auth()->user()->hasRole('Doctor')) {
+			$this->validate([
+				'departament' => 'required',
+				'provincie' => 'required',
+				'distritic' => 'required',
+				'hospital' => 'required',
+				'doctor' => 'required',
+				'date' => 'required',
+				'DNI' => 'required',
+				'name' => 'required',
+				'lastname' => 'required',
+			]);
+		}
 		try {
 			if (Appointment::where('date', $this->date)->where('doctor_id', $this->doctor)->count()) {
 				$this->emit('info', 'No se puede reservar una cita en este horario');
 			} else {
-				// CREACION DE CITA
-				$appointment01 = auth()->user()->appointments()->create(['date' => $this->date, 'status' => 'Pendiente']);
-				// ASIGNAR DOCTOR Y HOSPITAL A CITA
-				$appointment01->doctor()->associate($this->doctor);
-				$appointment01->hospital()->associate($this->hospital);
-				$appointment01->save();
+				if (auth()->user()->hasRole('Paciente')) {
+
+					// CREACION DE CITA PACIENTE
+					$appointment01 = auth()->user()->appointments()->create(['date' => $this->date, 'status' => 'Pendiente']);
+					// ASIGNAR DOCTOR Y HOSPITAL A CITA
+					$appointment01->doctor()->associate($this->doctor);
+					$appointment01->hospital()->associate($this->hospital);
+					$appointment01->save();
+				} elseif (auth()->user()->hasRole('Doctor')) {
+					// CREACION DE CITA PACIENTE
+					$user = User::where('DNI', '=', $this->DNI)->first();
+					$appointment01 = $user->appointments()->create(['date' => $this->date, 'status' => 'Pendiente']);
+					// ASIGNAR DOCTOR Y HOSPITAL A CITA
+					$appointment01->doctor()->associate($this->doctor);
+					$appointment01->hospital()->associate($this->hospital);
+					$appointment01->save();
+				}
 				$this->reset(['departament', 'provincie', 'distritic', 'hospital', 'doctor', 'date']);
 				$this->redirect('/citas');
 			}
 		} catch (Exception $e) {
 			$this->emit('error', $e->getMessage());
 		}
+	}
+
+	public function searchPerson()
+	{
+		try {
+			$this->reset(['user', 'name', 'lastname']);
+			if ($this->DNI) {
+				$user = User::where('DNI', '=', $this->DNI);
+				if ($user->count()) {
+					$user = User::where('DNI', '=', $this->DNI)->first();
+					$this->name = $user->name;
+					$this->lastname = $user->lastname;
+				} else {
+					$this->emit('info', 'Paciente No Registrado');
+				}
+			}
+		} catch (Exception $e) {
+			$this->emit('error', $e->getMessage());
+		}
+	}
+
+	public function clear()
+	{
+		$this->reset(['user', 'DNI', 'name', 'lastname']);
 	}
 
 	public function updatedDepartament($id)
@@ -61,7 +113,7 @@ class CreateAppointment extends Component
 		$this->distritics = null;
 		$this->hospitals = null;
 		$this->doctors = null;
-		$this->reset(['provincie', 'distritic', 'hospital', 'doctor','appointments']);
+		$this->reset(['provincie', 'distritic', 'hospital', 'doctor', 'appointments']);
 	}
 
 	public function updatedProvincie($id)
@@ -70,7 +122,7 @@ class CreateAppointment extends Component
 		$this->distritics = $distritics;
 		$this->hospitals = null;
 		$this->doctors = null;
-		$this->reset(['distritic', 'hospital', 'doctor','appointments']);
+		$this->reset(['distritic', 'hospital', 'doctor', 'appointments']);
 	}
 
 	public function updatedDistritic($id)
@@ -78,7 +130,7 @@ class CreateAppointment extends Component
 		$hospitals = Distritic::find($id)->hospitals;
 		$this->hospitals = $hospitals;
 		$this->doctors = null;
-		$this->reset(['hospital', 'doctor','appointments']);
+		$this->reset(['hospital', 'doctor', 'appointments']);
 	}
 
 	public function updatedHospital($id)
@@ -87,9 +139,10 @@ class CreateAppointment extends Component
 		$this->doctors = $doctors;
 		$this->reset(['doctor']);
 	}
+
 	public function updatedDoctor($id)
 	{
-		$appointments = Appointment::where('doctor_id',$id)->where('status','!=','Atendido')->get();
+		$appointments = Appointment::where('doctor_id', $id)->where('status', '!=', 'Atendido')->get();
 		$this->appointments = compact('appointments');
 	}
 }

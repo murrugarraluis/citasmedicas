@@ -141,7 +141,7 @@ class ShowDoctor extends Component
 	public function search()
 	{
 		try {
-			$this->reset(['user','name', 'lastname', 'speciality']);
+			$this->reset(['user', 'name', 'lastname', 'speciality']);
 			if ($this->DNI) {
 				$user = User::where('DNI', '=', $this->DNI);
 				if ($user->count()) {
