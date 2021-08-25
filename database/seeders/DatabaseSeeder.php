@@ -2165,7 +2165,7 @@ class DatabaseSeeder extends Seeder
 			'name' => 'Jose Carlos',
 			'lastname' => 'Lezama Vazques',
 			'gender' => 'Masculino',
-			'email' => 'doctorl@app.com',
+			'email' => 'doctor@app.com',
 			'password' => bcrypt('123456'),
 		]);
 		$doctor01 = User::factory()->create([
@@ -2212,8 +2212,8 @@ class DatabaseSeeder extends Seeder
 
 		// ASIGNAR ROLES A USUARIOS
 		$admin->assignRole('Administrativo');
-		$doctorHospital->syncRoles(['Hospital', 'Paciente']);
-		$doctor->syncRoles(['Doctor', 'Paciente']);
+		$doctorHospital->assignRole('Hospital');
+		$doctor->assignRole('Doctor');
 		$paciente01->assignRole('Paciente');
 		$paciente02->assignRole('Paciente');
 		$paciente03->assignRole('Paciente');

@@ -20,12 +20,13 @@ class RoleSeeder extends Seeder
 		$role03 = Role::create(['name' => 'Doctor']);
 		$role04 = Role::create(['name' => 'Paciente']);
 
-		Permission::create(['name'=>'hospital'])->assignRole($role01);
-
-		Permission::create(['name'=>'covidteam'])->assignRole($role02);
-		Permission::create(['name'=>'doctor'])->assignRole($role02);
-
-		Permission::create(['name'=>'appointment'])->assignRole($role04);
-		Permission::create(['name'=>'create-appointment'])->assignRole($role04);
+//   PERMISOS DE  ROlE ADMINISTRADOR
+		Permission::create(['name' => 'hospital'])->assignRole($role01);
+//   PERMISOS DE  ROlE HOSPITAL
+		Permission::create(['name' => 'covidteam'])->assignRole($role02);
+		Permission::create(['name' => 'doctor'])->assignRole($role02);
+//   PERMISOS DE  ROlE DOCTOR Y PACIENTE
+		Permission::create(['name' => 'appointment'])->syncRoles([$role03, $role04]);
+		Permission::create(['name' => 'create-appointment'])->assignRole($role04);
 	}
 }

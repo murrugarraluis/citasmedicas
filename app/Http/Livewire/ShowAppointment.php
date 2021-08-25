@@ -30,6 +30,7 @@ class ShowAppointment extends Component
 //			->whereBetween('date', [$this->date_start, $this->date_end])
 //			->orderBy($this->sort, $this->direction)->paginate($this->show);
 //		dd($appointments);
+  if(auth()->user()->role('Paciente')){
 		$appointments = Appointment::join('hospitals', 'hospitals.id', '=', 'appointments.hospital_id')
 			->join('doctors', 'doctors.id', '=', 'appointments.doctor_id')
 			->join('users', 'users.id', '=', 'doctors.user_id')
@@ -43,7 +44,22 @@ class ShowAppointment extends Component
 					->orwhere('users.lastname', 'like', '%' . $this->search . '%');
 			})
 			->orderBy($this->sort, $this->direction)->paginate($this->show);
-//		dd($appointments);
+	}
+  if (auth()->user()->role('Doctor')){
+		$appointments = Appointment::join('hospitals', 'hospitals.id', '=', 'appointments.hospital_id')
+//			->join('doctors', 'doctors.id', '=', 'appointments.doctor_id')
+			->join('users', 'users.id', '=', 'appointments.user_id')
+			->where('appointments.doctor_id', '=', auth()->user()->doctor->id)
+			->where('appointments.status', '!=', $this->status01)
+			->where('appointments.status', '!=', $this->status02)
+			->select('appointments.*')
+			->where(function ($query) {
+				$query->where('hospitals.name', 'like', '%' . $this->search . '%')
+					->orwhere('users.name', 'like', '%' . $this->search . '%')
+					->orwhere('users.lastname', 'like', '%' . $this->search . '%');
+			})
+			->orderBy($this->sort, $this->direction)->paginate($this->show);
+	}
 		return view('livewire.show-appointment', compact('appointments'));
 	}
 

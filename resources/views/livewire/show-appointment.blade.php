@@ -86,7 +86,12 @@
 							<th
 								class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider select-none	">
 								<div class="flex justify-between cursor-pointer" wire:click="order('users.name')">
+									@role('Paciente')
 									Doctor
+									@endrole
+									@role('Doctor')
+									Paciente
+									@endrole
 									<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
 											 stroke="currentColor">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -122,8 +127,14 @@
 										<p class="text-gray-600 whitespace-no-wrap">{{ $appointment->hospital->name }}</p>
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+										@role('Paciente')
 										<p
 											class="text-gray-600 whitespace-no-wrap">{{ $appointment->doctor->user->name ." ".$appointment->doctor->user->lastname }}</p>
+										@endrole
+										@role('Doctor')
+										<p
+											class="text-gray-600 whitespace-no-wrap">{{ $appointment->user->name ." ".$appointment->user->lastname }}</p>
+										@endrole
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<p class="text-gray-600 whitespace-no-wrap">{{$appointment->date}}</p>
@@ -139,6 +150,7 @@
 										</td>
 										<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-10">
 											<div class="flex flex-col md:flex-row">
+												@role('Paciente')
 												@livewire('info-appointment', ['appointment' => $appointment], key($appointment->id))
 												<div class="flex">
 													<a wire:click="delete({{ $appointment->id }})"
@@ -150,6 +162,11 @@
 														</svg>
 													</a>
 												</div>
+												@endrole
+
+												@role('Doctor')
+
+												@endrole
 											</div>
 										</td>
 									@elseif($appointment->status == 'Atendido')
@@ -177,6 +194,7 @@
 										</td>
 										<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm w-10">
 											<div class="flex flex-col md:flex-row">
+												@role('Paciente')
 												@livewire('info-appointment', ['appointment' => $appointment], key($appointment->id))
 												<div class="flex">
 													<a wire:click="delete({{ $appointment->id }})"
@@ -188,6 +206,11 @@
 														</svg>
 													</a>
 												</div>
+												@endrole
+
+												@role('Doctor')
+
+												@endrole
 											</div>
 										</td>
 									@endif
@@ -205,7 +228,7 @@
 				</div>
 			</div>
 			<div class="py-2 px-4">
-								{{ $appointments->links() }}
+				{{ $appointments->links() }}
 			</div>
 		</div>
 	</div>
