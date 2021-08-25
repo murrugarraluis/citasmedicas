@@ -27,6 +27,6 @@ class RoleSeeder extends Seeder
 		Permission::create(['name' => 'doctor'])->assignRole($role02);
 //   PERMISOS DE  ROlE DOCTOR Y PACIENTE
 		Permission::create(['name' => 'appointment'])->syncRoles([$role03, $role04]);
-		Permission::create(['name' => 'create-appointment'])->assignRole($role04);
+		Permission::create(['name' => 'create-appointment'])->syncRoles([$role03, $role04]);
 	}
 }

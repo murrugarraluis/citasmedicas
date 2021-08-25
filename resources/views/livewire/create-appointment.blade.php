@@ -71,6 +71,53 @@
 						</select>
 						@error('doctor')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 					</div>
+					@role('Doctor')
+					<div class="md:col-start-1	md:col-end-4 lg:col-span-1">
+						<x-jet-label value="DNI" class="mb-2"></x-jet-label>
+						<div class="flex items-center w-full">
+							<div class="w-full">
+								<x-jet-input type="text" class="w-full" wire:model.defer="DNI" placeholder="DNI"></x-jet-input>
+								@error('DNI')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+							</div>
+							<div>
+								<button type="button" wire:click="search()"
+												class=" flex border border-blue-400 bg-blue-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-blue-600 focus:outline-none focus:shadow-outline">
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+											 stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+													d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+									</svg>
+								</button>
+							</div>
+							<div>
+								<button type="button" wire:click="clear()"
+												class=" flex border border-gray-400 bg-gray-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline">
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+											 stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+													d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="grid grid-cols-2 gap-4 lg:grid-cols-1 lg:gap-1">
+						<div class="my-2 w-full">
+							<x-jet-label value="Nombre" class="mb-2"></x-jet-label>
+							<x-jet-input type="text" class="w-full bg-gray-200 text-gray-600" wire:model.defer="name"
+													 placeholder="Nombre"
+													 disabled></x-jet-input>
+							@error('name')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+						</div>
+						<div class="my-2 w-full">
+							<x-jet-label value="Apellido" class="mb-2"></x-jet-label>
+							<x-jet-input type="text" class="w-full bg-gray-200 text-gray-600" wire:model.defer="lastname"
+													 placeholder="Apellido"
+													 disabled></x-jet-input>
+							@error('lastname')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
+						</div>
+						</div>
+					</div>
+					@endrole
 					<div class="hidden">
 						<x-jet-label value="Fecha y Hora" class="mb-2"></x-jet-label>
 						<input id="date" type="datetime-local" wire:model="date" disabled>
@@ -155,7 +202,7 @@
 					},
 					dateClick: function (info) {
 						var selectedDoctor = @this.doctor;
-						if(selectedDoctor != null){
+						if (selectedDoctor != null) {
 							var inputF = document.getElementById("date");
 							var dateF = new Date(info.dateStr);
 							var m = (dateF.getMonth() + 1).toString().length < 2 ? '0' + (dateF.getMonth() + 1) : (dateF.getMonth() + 1);
@@ -169,8 +216,7 @@
 								= fechaM;
 								fechaM = null;
 							}
-						}
-						else{
+						} else {
 							Livewire.emit('info', 'Antes de escoger un horario, por favor complete todos los campos')
 						}
 					},

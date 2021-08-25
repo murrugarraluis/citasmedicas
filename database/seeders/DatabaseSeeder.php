@@ -2233,7 +2233,7 @@ class DatabaseSeeder extends Seeder
 		// CREACION DE CITA
 		$appointment01 = $paciente01->appointments()->create(['date' => '2021-07-12T09:00', 'status' => 'Atendido',]);
 		$appointment02 = $paciente01->appointments()->create(['date' => '2021-07-10T10:00', 'status' => 'Retrasado',]);
-		$appointment03 = $paciente01->appointments()->create(['date' => date("Y-m-d")."T".date("H:m"), 'status' => 'Pendiente',]);
+		$appointment03 = $paciente01->appointments()->create(['date' => date("Y-m-d")."T11:00", 'status' => 'Pendiente',]);
 		$appointment04 = $paciente02->appointments()->create(['date' => '2021-08-10T10:00', 'status' => 'Retrasado',]);
 //		$appointment05 = $paciente03->appointments()->create(['date' => date("d/m/Y"), 'status' => 'Pendiente',]);
 
