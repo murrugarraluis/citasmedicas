@@ -165,7 +165,7 @@
 												@endrole
 
 												@role('Doctor')
-
+												@livewire('attend-appointment', ['appointment' => $appointment], key($appointment->id))
 												@endrole
 											</div>
 										</td>
@@ -209,7 +209,7 @@
 												@endrole
 
 												@role('Doctor')
-
+													@livewire('attend-appointment', ['appointment' => $appointment], key($appointment->id))
 												@endrole
 											</div>
 										</td>
