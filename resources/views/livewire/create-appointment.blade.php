@@ -143,7 +143,6 @@
 			var calendarEl = document.getElementById('calendar');
 			var ArrayEvents = [
 				{
-					groupId: 999,
 					title: 'Mi Cita',
 					start: myDate
 				},
@@ -210,8 +209,7 @@
 								Livewire.emit('info', 'no se puede realizar la cita en esta fecha')
 							} else {
 								inputF.value = fechaM;
-							@this.date
-								= fechaM;
+								@this.date = fechaM;
 								fechaM = null;
 							}
 						} else {
