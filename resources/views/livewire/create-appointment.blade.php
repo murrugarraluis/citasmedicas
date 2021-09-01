@@ -204,7 +204,8 @@
 							var dateF = new Date(info.dateStr);
 							var m = (dateF.getMonth() + 1).toString().length < 2 ? '0' + (dateF.getMonth() + 1) : (dateF.getMonth() + 1);
 							var h = dateF.getHours().toString().length < 2 ? '0' + (dateF.getHours()) + ':00' : (dateF.getHours()) + ':00';
-							var fechaM = dateF.getFullYear() + "-" + m + "-" + dateF.getDate() + 'T' + h;
+							var day = dateF.getDate().toString().length < 2 ? '0' + (dateF.getDate()):dateF.getDate();
+							var fechaM = dateF.getFullYear() + "-" + m + "-" + day + 'T' + h;
 							if (fechaM < fechaGlobal) {
 								Livewire.emit('info', 'no se puede realizar la cita en esta fecha')
 							} else {
@@ -217,8 +218,7 @@
 						}
 					},
 					events: ArrayEvents,
-				})
-			;
+				});
 			calendar.render();
 		});
 	</script>
