@@ -25,7 +25,7 @@ class CreateHospital extends Component
 		'firstname' => 'required',
 		'lastname' => 'required',
 		'gender' => 'required',
-		'email' => 'required',
+		'email' => 'required|email',
 	];
 	public function render()
 	{

@@ -98,7 +98,7 @@
 					</div>
 					<div>
 						<x-jet-label value="Email" class="mb-2"></x-jet-label>
-						<x-jet-input type="text" class="w-full" wire:model.defer="email"></x-jet-input>
+						<x-jet-input type="email" class="w-full" wire:model.defer="email"></x-jet-input>
 						@error('email')<span class="italic lowercase text-xs text-red-600">{{ $message }}</span>@enderror
 					</div>
 				</div>

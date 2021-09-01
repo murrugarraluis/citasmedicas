@@ -17,7 +17,7 @@ class EditDoctor extends Component
 		'lastname' => 'required',
 		'specialty' => 'required',
 		'gender' => 'required',
-		'email' => 'required',
+		'email' => 'required|email',
 		'phone' => 'required',
 	];
 
