@@ -138,8 +138,9 @@
 			var f = new Date();
 			var m = (f.getMonth() + 1).toString().length < 2 ? '0' + (f.getMonth() + 1) : (f.getMonth() + 1);
 			var h = f.getHours().toString().length < 2 ? '0' + (f.getHours() + 1) + ':00' : (f.getHours() + 1) + ':00';
-			var fecha = f.getFullYear() + "-" + m + "-" + f.getDate();
-			var fechaGlobal = f.getFullYear() + "-" + m + "-" + f.getDate() + 'T' + h;
+			var day = f.getDate().toString().length < 2 ? '0' + (f.getDate()):f.getDate();
+			var fecha = f.getFullYear() + "-" + m + "-" + day;
+			var fechaGlobal = f.getFullYear() + "-" + m + "-" + day+ 'T' + h;
 			var calendarEl = document.getElementById('calendar');
 			var ArrayEvents = [
 				{
@@ -161,7 +162,6 @@
 					ArrayEvents.push(prueba);
 				}
 			}
-
 			var calendar = new FullCalendar.Calendar(calendarEl, {
 					locale: 'es',
 					initialDate: fecha,
