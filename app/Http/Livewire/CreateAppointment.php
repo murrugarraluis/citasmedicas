@@ -8,6 +8,7 @@ use App\Models\Distritic;
 use App\Models\Hospital;
 use App\Models\Provincie;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Exception;
 
@@ -38,22 +39,22 @@ class CreateAppointment extends Component
 
 	public function store()
 	{
-		if (auth()->user()->hasRole('Paciente')) {
-			$this->validate();
-		} elseif (auth()->user()->hasRole('Doctor')) {
-			$this->validate([
-				'departament' => 'required',
-				'provincie' => 'required',
-				'distritic' => 'required',
-				'hospital' => 'required',
-				'doctor' => 'required',
-				'date' => 'required',
-				'DNI' => 'required',
-				'name' => 'required',
-				'lastname' => 'required',
-			]);
-		}
+//		Inicio de Transaccion
+		DB::beginTransaction();
 		try {
+			//Validar Campos
+			if (auth()->user()->hasRole('Paciente')) {$this->validate();} elseif (auth()->user()->hasRole('Doctor')) {$this->validate([
+					'departament' => 'required',
+					'provincie' => 'required',
+					'distritic' => 'required',
+					'hospital' => 'required',
+					'doctor' => 'required',
+					'date' => 'required',
+					'DNI' => 'required',
+					'name' => 'required',
+					'lastname' => 'required',
+				]);}
+//			Validar Horario
 			if (Appointment::where('date', $this->date)->where('doctor_id', $this->doctor)->count()) {
 				$this->emit('info', 'No se puede reservar una cita en este horario');
 			} else {
@@ -62,7 +63,7 @@ class CreateAppointment extends Component
 					// CREACION DE CITA PACIENTE
 					$appointment01 = auth()->user()->appointments()->create(['date' => $this->date, 'status' => 'Pendiente']);
 					// ASIGNAR DOCTOR Y HOSPITAL A CITA
-					$appointment01->doctor()->associate($this->doctor);
+					$appointment01->doctor()->associate('100');
 					$appointment01->hospital()->associate($this->hospital);
 					$appointment01->save();
 				} elseif (auth()->user()->hasRole('Doctor')) {
@@ -74,10 +75,12 @@ class CreateAppointment extends Component
 					$appointment01->hospital()->associate($this->hospital);
 					$appointment01->save();
 				}
+				DB::commit();
 				$this->reset(['departament', 'provincie', 'distritic', 'hospital', 'doctor', 'date']);
 				$this->redirect('/citas');
 			}
 		} catch (Exception $e) {
+			DB::rollBack();
 			$this->emit('error', $e->getMessage());
 		}
 	}

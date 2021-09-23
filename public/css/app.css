@@ -1214,14 +1214,14 @@ select {
 .mb-4 {
 	margin-bottom: 1rem;
 }
+.-mt-px {
+	margin-top: -1px;
+}
 .mb-2 {
 	margin-bottom: 0.5rem;
 }
 .mb-1 {
 	margin-bottom: 0.25rem;
-}
-.-mt-px {
-	margin-top: -1px;
 }
 .block {
 	display: block;
@@ -1319,11 +1319,11 @@ select {
 .w-20 {
 	width: 5rem;
 }
-.w-10\/12 {
-	width: 83.333333%;
-}
 .w-72 {
 	width: 18rem;
+}
+.w-10\/12 {
+	width: 83.333333%;
 }
 .min-w-0 {
 	min-width: 0px;
@@ -1552,6 +1552,10 @@ select {
 	--tw-border-opacity: 1;
 	border-color: rgba(243, 244, 246, var(--tw-border-opacity));
 }
+.border-green-400 {
+	--tw-border-opacity: 1;
+	border-color: rgba(52, 211, 153, var(--tw-border-opacity));
+}
 .border-blue-400 {
 	--tw-border-opacity: 1;
 	border-color: rgba(96, 165, 250, var(--tw-border-opacity));
@@ -1567,10 +1571,6 @@ select {
 .border-red-400 {
 	--tw-border-opacity: 1;
 	border-color: rgba(248, 113, 113, var(--tw-border-opacity));
-}
-.border-green-400 {
-	--tw-border-opacity: 1;
-	border-color: rgba(52, 211, 153, var(--tw-border-opacity));
 }
 .border-green-600 {
 	--tw-border-opacity: 1;
@@ -1628,6 +1628,10 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
 }
+.bg-green-400 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(52, 211, 153, var(--tw-bg-opacity));
+}
 .bg-blue-400 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(96, 165, 250, var(--tw-bg-opacity));
@@ -1654,10 +1658,6 @@ select {
 .bg-red-400 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(248, 113, 113, var(--tw-bg-opacity));
-}
-.bg-green-400 {
-	--tw-bg-opacity: 1;
-	background-color: rgba(52, 211, 153, var(--tw-bg-opacity));
 }
 .bg-green-600 {
 	--tw-bg-opacity: 1;
@@ -1795,6 +1795,12 @@ select {
 .pb-1 {
 	padding-bottom: 0.25rem;
 }
+.pt-8 {
+	padding-top: 2rem;
+}
+.pr-2 {
+	padding-right: 0.5rem;
+}
 .pr-8 {
 	padding-right: 2rem;
 }
@@ -1806,12 +1812,6 @@ select {
 }
 .pr-6 {
 	padding-right: 1.5rem;
-}
-.pr-2 {
-	padding-right: 0.5rem;
-}
-.pt-8 {
-	padding-top: 2rem;
 }
 .text-left {
 	text-align: left;
@@ -1951,6 +1951,14 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(16, 185, 129, var(--tw-text-opacity));
 }
+.text-gray-200 {
+	--tw-text-opacity: 1;
+	color: rgba(229, 231, 235, var(--tw-text-opacity));
+}
+.text-gray-300 {
+	--tw-text-opacity: 1;
+	color: rgba(209, 213, 219, var(--tw-text-opacity));
+}
 .text-red-900 {
 	--tw-text-opacity: 1;
 	color: rgba(127, 29, 29, var(--tw-text-opacity));
@@ -1962,14 +1970,6 @@ select {
 .text-yellow-900 {
 	--tw-text-opacity: 1;
 	color: rgba(120, 53, 15, var(--tw-text-opacity));
-}
-.text-gray-200 {
-	--tw-text-opacity: 1;
-	color: rgba(229, 231, 235, var(--tw-text-opacity));
-}
-.text-gray-300 {
-	--tw-text-opacity: 1;
-	color: rgba(209, 213, 219, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;
@@ -2105,6 +2105,10 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
+.hover\:bg-green-600:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(5, 150, 105, var(--tw-bg-opacity));
+}
 .hover\:bg-blue-600:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
@@ -2116,10 +2120,6 @@ select {
 .hover\:bg-gray-800:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
-}
-.hover\:bg-green-600:hover {
-	--tw-bg-opacity: 1;
-	background-color: rgba(5, 150, 105, var(--tw-bg-opacity));
 }
 .hover\:bg-green-800:hover {
 	--tw-bg-opacity: 1;
@@ -2347,12 +2347,12 @@ select {
 		margin-left: 1.5rem;
 	}
 
-	.sm\:mb-0 {
-		margin-bottom: 0px;
-	}
-
 	.sm\:ml-0 {
 		margin-left: 0px;
+	}
+
+	.sm\:mb-0 {
+		margin-bottom: 0px;
 	}
 
 	.sm\:block {
@@ -2640,6 +2640,10 @@ select {
 		width: 91.666667%;
 	}
 
+	.lg\:grid-cols-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
 	.lg\:grid-cols-3 {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
@@ -2648,8 +2652,8 @@ select {
 		grid-template-columns: repeat(1, minmax(0, 1fr));
 	}
 
-	.lg\:grid-cols-4 {
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+	.lg\:gap-4 {
+		gap: 1rem;
 	}
 
 	.lg\:gap-8 {
@@ -2658,10 +2662,6 @@ select {
 
 	.lg\:gap-1 {
 		gap: 0.25rem;
-	}
-
-	.lg\:gap-4 {
-		gap: 1rem;
 	}
 
 	.lg\:px-8 {

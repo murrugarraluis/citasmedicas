@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Doctor;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class CreateDoctor extends Component
@@ -26,8 +27,11 @@ class CreateDoctor extends Component
 	}
 	public function store()
 	{
+		//		Inicio de Transaccion
+		DB::beginTransaction();
 		$this->validate();
 		try {
+//			Validar si doctor ya existe
 			if (Doctor::join('users','users.id','=','doctors.user_id')->where('users.DNI', $this->DNI)->count()) {
 				$this->emit('info', 'Doctor Ya Registrado');
 			} else {
@@ -41,6 +45,7 @@ class CreateDoctor extends Component
 					$this->emit('renovate', 'Este Doctor a sido Eliminada Anteriormente', $id);
 					$this->default();
 				} else {
+//					Crear Doctor
 					$user = User::create([
 						'DNI' => trim($this->DNI),
 						'name' => trim(ucfirst($this->name)),
@@ -52,12 +57,14 @@ class CreateDoctor extends Component
 					$user->doctor()->create(['speciality' => trim(ucfirst($this->specialty)), 'phone' => trim($this->phone)]);
 					$user->doctor->hospitals()->attach(auth()->user()->hospital->id);
 					$user->assignRole('Doctor');
+					DB::commit();
 					$this->default();
 					$this->emitTo('show-doctor', 'render');
 					$this->emit('alert', 'Doctor Agregado');
 				}
 			}
 		} catch (Exception $e) {
+			DB::rollBack();
 			$this->emit('error', $e->getMessage());
 		}
 	}
