@@ -63,7 +63,7 @@ class CreateAppointment extends Component
 					// CREACION DE CITA PACIENTE
 					$appointment01 = auth()->user()->appointments()->create(['date' => $this->date, 'status' => 'Pendiente']);
 					// ASIGNAR DOCTOR Y HOSPITAL A CITA
-					$appointment01->doctor()->associate('100');
+					$appointment01->doctor()->associate($this->doctor);
 					$appointment01->hospital()->associate($this->hospital);
 					$appointment01->save();
 				} elseif (auth()->user()->hasRole('Doctor')) {

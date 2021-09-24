@@ -22,16 +22,16 @@ class AddDoctor extends Component
 	public $user, $DNI, $name, $lastname, $speciality;
 	protected $listeners = ['restore', 'render'];
     public $open = false;
-	
+
 	public $team;
-    
+
 	protected $rules = [
 		'DNI' => 'required',
 		'name' => 'required',
 		'lastname' => 'required',
 		'speciality' => 'required',
 	];
-   
+
 	public function open()
 	{
 		$this->open = true;
@@ -75,7 +75,7 @@ class AddDoctor extends Component
 		$this->reset(['user', 'DNI', 'name', 'lastname', 'speciality']);
 	}
 
-    public function suprim($id)
+	public function suprim($id)
 	{
 		try {
 			$user = Doctor::find($id);
@@ -87,7 +87,7 @@ class AddDoctor extends Component
 		}
 	}
 
-    
+
 	public function order($sort)
 	{
 		if ($this->direction == 'desc') {
@@ -153,7 +153,7 @@ class AddDoctor extends Component
 		} catch (Exception $e) {
 			$this->emit('error', $e->getMessage());
 		}
-		
+
 	}
 
 	public function searchMatches($user, $hospital)
@@ -167,6 +167,6 @@ class AddDoctor extends Component
 		}
 		return false;
 	}
-  
+
 
 }
